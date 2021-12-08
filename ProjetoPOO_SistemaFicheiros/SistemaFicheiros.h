@@ -17,6 +17,7 @@ public:
 	bool Load(const string& path);
 	int ContarFicheiros();
 	int Memoria();
+	string* DirectoriaMaisElementos();
 private:
 
 };

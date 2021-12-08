@@ -145,12 +145,14 @@
   <ItemGroup>
     <ClCompile Include="Directoria.cpp" />
     <ClCompile Include="Ficheiro.cpp" />
+    <ClCompile Include="ObjetoGeral.cpp" />
     <ClCompile Include="ProjetoPOO_SistemaFicheiros.cpp" />
     <ClCompile Include="SistemaFicheiros.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Directoria.h" />
     <ClInclude Include="Ficheiro.h" />
+    <ClInclude Include="ObjetoGeral.h" />
     <ClInclude Include="SistemaFicheiros.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

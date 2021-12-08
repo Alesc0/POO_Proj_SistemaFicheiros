@@ -2,16 +2,13 @@
 #define FICHEIRO_H
 #include <iostream>
 #include <algorithm>
+#include "ObjetoGeral.h"
 
 using namespace std;
 
-class Ficheiro
+class Ficheiro: public ObjetoGeral
 {
-	string nome;
 public:
-
-	void setNome(string nome);
-	string returnNome();
 	Ficheiro();
 	~Ficheiro();
 

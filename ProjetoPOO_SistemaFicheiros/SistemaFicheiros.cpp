@@ -28,6 +28,12 @@ int SistemaFicheiros::Memoria() {
 	return 0;
 }
 
+string* SistemaFicheiros::DirectoriaMaisElementos()
+{
+	Directoria* dir = NULL;
+	return root->dirMaisElementos(dir,0);
+}
+
 int SistemaFicheiros::ContarFicheiros() {
 	return root->countFiles();
 }

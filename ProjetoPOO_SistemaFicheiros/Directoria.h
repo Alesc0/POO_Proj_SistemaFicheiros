@@ -5,12 +5,12 @@
 #include <algorithm>
 #include <list>
 #include "Ficheiro.h"
+#include "ObjetoGeral.h"
 
 using namespace std;
 
-class Directoria
+class Directoria : public ObjetoGeral
 {
-	string nome;
 	Directoria* parent;
 	list<Directoria*> Dirs;
 	list<Ficheiro*> Ficheiros;
@@ -19,9 +19,9 @@ public:
 	~Directoria();
 	int countFiles();
 	int countDirs();
-	void setNome(string nome);
 	bool processDir(const string& path,Directoria* nowDir);
 	void treeView(int nivel);
+	string* dirMaisElementos(Directoria* big,int count);
 
 private:
 

@@ -39,11 +39,6 @@ int Directoria::countDirs()
 	return c;
 }
 
-void Directoria::setNome(string _nome)
-{
-	nome = _nome;
-}
-
 bool Directoria::processDir(const string& path, Directoria* nowDir)
 {
 	DIR* dir;
@@ -97,7 +92,7 @@ void spaces(int n) {
 void Directoria::treeView(int nivel = 0)
 {
 	spaces(nivel);
-	cout << nome << endl;
+	cout << returnNome() << endl;
 
 	list<Directoria*>::iterator it = Dirs.begin();
 	for (it; it != Dirs.end(); it++)
@@ -113,3 +108,7 @@ void Directoria::treeView(int nivel = 0)
 	}
 }
 
+string* Directoria::dirMaisElementos(Directoria* big, int count)
+{
+	
+}

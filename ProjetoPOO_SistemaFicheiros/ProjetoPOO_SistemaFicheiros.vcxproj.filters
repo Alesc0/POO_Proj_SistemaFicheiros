@@ -27,6 +27,9 @@
     <ClCompile Include="Ficheiro.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ObjetoGeral.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SistemaFicheiros.h">
@@ -36,6 +39,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Ficheiro.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjetoGeral.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
