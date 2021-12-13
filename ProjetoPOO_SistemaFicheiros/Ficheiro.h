@@ -11,6 +11,7 @@ class Ficheiro: public ObjetoGeral
 public:
 	Ficheiro();
 	~Ficheiro();
+	virtual void treeView(int nivel);
 
 private:
 

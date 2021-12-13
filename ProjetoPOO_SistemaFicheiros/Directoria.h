@@ -12,16 +12,14 @@ using namespace std;
 class Directoria : public ObjetoGeral
 {
 	Directoria* parent;
-	list<Directoria*> Dirs;
-	list<Ficheiro*> Ficheiros;
+	list<ObjetoGeral*> Items;
 public:
 	Directoria();
 	~Directoria();
-	int countFiles();
-	int countDirs();
-	bool processDir(const string& path,Directoria* nowDir);
-	void treeView(int nivel);
-	string* dirMaisElementos(Directoria* big,int count);
+	//int countFiles();
+	//int countDirs();
+	bool processItems(const string& path, Directoria* nowDir);
+	virtual void treeView(int nivel);
 
 private:
 

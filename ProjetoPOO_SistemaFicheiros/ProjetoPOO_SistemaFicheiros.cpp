@@ -12,12 +12,10 @@ int main()
 {
 	SistemaFicheiros SF;
 	int i = 0, r = 0;
-	bool loadCheck = SF.Load("C:/Users/Pedro/Desktop/POO_Proj_SistemaFicheiros/POOPROJ");
+	bool loadCheck = SF.Load("C:\\Users\\ProHa\\Desktop\\POO_Proj_SistemaFicheiros\\POOPROJ");
 
-	Directoria* dir = NULL;
-	cout << SF.DirectoriaMaisElementos() << endl;
+	SF.outRoot()->treeView(0);
 	
-
 
 	return 0;
 }

@@ -16,3 +16,7 @@ string ObjetoGeral::returnNome()
 {
 	return nome;
 }
+
+void ObjetoGeral::treeView(int nivel)
+{
+}

@@ -11,7 +11,7 @@ Directoria::~Directoria()
 	//dtor
 }
 
-int Directoria::countFiles()
+/*int Directoria::countFiles()
 {
 	int c = 0;
 	list<Directoria*>::iterator it = Dirs.begin();
@@ -25,10 +25,10 @@ int Directoria::countFiles()
 		c += (*it)->countFiles();
 	}
 	return c;
-}
+}*/
 
 
-int Directoria::countDirs()
+/*int Directoria::countDirs()
 {
 	int c = 0;
 	list<Directoria*>::iterator it = Dirs.begin();
@@ -37,9 +37,9 @@ int Directoria::countDirs()
 		c += 1 + (*it)->countDirs();
 	}
 	return c;
-}
+}*/
 
-bool Directoria::processDir(const string& path, Directoria* nowDir)
+bool Directoria::processItems(const string& path, Directoria* nowDir)
 {
 	DIR* dir;
 	struct dirent* entry;
@@ -51,7 +51,6 @@ bool Directoria::processDir(const string& path, Directoria* nowDir)
 		cout << "ERRO! Directoria não encontrada." << endl;
 		return false;
 	}
-
 	while ((entry = readdir(dir)) != NULL) {
 		if (strcmp(entry->d_name, ".") && strcmp(entry->d_name, "..")) {
 			string p = string(path).append("\\").append(string(entry->d_name));
@@ -62,19 +61,19 @@ bool Directoria::processDir(const string& path, Directoria* nowDir)
 				Directoria* atualDir = new Directoria();
 				atualDir->setNome(entry->d_name);
 				if (nowDir != NULL)
-					nowDir->Dirs.push_back(atualDir);
+					nowDir->Items.push_back(atualDir);
 				else
-					Dirs.push_back(atualDir);
-				processDir(p, atualDir);
+					Items.push_back(atualDir);
+				processItems(p, atualDir);
 			}
 			else if (S_ISREG(status.st_mode)) // if file
 			{
 				Ficheiro* fich = new Ficheiro();
 				fich->setNome(entry->d_name);
 				if (nowDir != NULL)
-					nowDir->Ficheiros.push_back(fich);
+					nowDir->Items.push_back(fich);
 				else
-					Ficheiros.push_back(fich);
+					Items.push_back(fich);
 			}
 		}
 	}
@@ -82,7 +81,7 @@ bool Directoria::processDir(const string& path, Directoria* nowDir)
 	return true;
 }
 
-void spaces(int n) {
+void DirSpaces(int n) {
 	for (int i = 0; i < n; i++)
 	{
 		cout << "\t";
@@ -91,24 +90,11 @@ void spaces(int n) {
 
 void Directoria::treeView(int nivel = 0)
 {
-	spaces(nivel);
+	DirSpaces(nivel);
 	cout << returnNome() << endl;
-
-	list<Directoria*>::iterator it = Dirs.begin();
-	for (it; it != Dirs.end(); it++)
+	list<ObjetoGeral*>::iterator it = Items.begin();
+	for (it; it != Items.end(); it++)
 	{
 		(*it)->treeView(nivel + 1);
 	}
-
-	list<Ficheiro*>::iterator it2 = Ficheiros.begin();
-	for (it2; it2 != Ficheiros.end(); it2++)
-	{
-		spaces(nivel + 1);
-		cout << (*it2)->returnNome() << endl;
-	}
-}
-
-string* Directoria::dirMaisElementos(Directoria* big, int count)
-{
-	
 }

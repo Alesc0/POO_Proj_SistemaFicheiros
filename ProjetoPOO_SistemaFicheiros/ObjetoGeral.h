@@ -13,6 +13,7 @@ public:
 	~ObjetoGeral();
 	void setNome(string nome);
 	string returnNome();
+	virtual void treeView(int nivel);
 private:
 
 };

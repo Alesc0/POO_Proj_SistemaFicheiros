@@ -3,12 +3,12 @@
 
 bool SistemaFicheiros::Load(const string& path) {
 	root = new Directoria();
-	pathToRoot = path; 
-	auto pos = path.find_last_of('/');
+	pathToRoot = path;
+	auto pos = path.find_last_of('\\');
 	if (pos != string::npos) {
-		root->setNome(path.substr(pos+1));
+		root->setNome(path.substr(pos + 1));
 	}
-	return root->processDir(path,NULL);
+	return root->processItems(path, NULL);
 }
 
 SistemaFicheiros::SistemaFicheiros()
@@ -28,12 +28,12 @@ int SistemaFicheiros::Memoria() {
 	return 0;
 }
 
-string* SistemaFicheiros::DirectoriaMaisElementos()
+/*string* SistemaFicheiros::DirectoriaMaisElementos()
 {
 	Directoria* dir = NULL;
 	return root->dirMaisElementos(dir,0);
-}
+}*/
 
-int SistemaFicheiros::ContarFicheiros() {
+/*int SistemaFicheiros::ContarFicheiros() {
 	return root->countFiles();
-}
+}*/
