@@ -20,3 +20,13 @@ string ObjetoGeral::returnNome()
 void ObjetoGeral::treeView(int nivel)
 {
 }
+
+int ObjetoGeral::countFiles()
+{
+	return 0;
+}
+
+int ObjetoGeral::countDirs()
+{
+	return 0;
+}

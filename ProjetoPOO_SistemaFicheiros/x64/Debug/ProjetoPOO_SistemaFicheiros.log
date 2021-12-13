@@ -1,7 +1,43 @@
 ﻿  Directoria.cpp
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\ObjetoGeral.h(19,35): error C2061: syntax error: identifier 'Directoria'
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\Directoria.cpp(45,11): error C2039: 'dirmaiselementos': is not a member of 'ObjetoGeral'
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\ObjetoGeral.h(8): message : see declaration of 'ObjetoGeral'
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\Directoria.cpp(75): error C2259: 'Directoria': cannot instantiate abstract class
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\Directoria.h(12): message : see declaration of 'Directoria'
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\Directoria.cpp(75): message : due to following members:
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\Directoria.cpp(75): message : 'std::string *ObjetoGeral::dirMaisElementos(void)': is abstract
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\ObjetoGeral.h(19): message : see declaration of 'ObjetoGeral::dirMaisElementos'
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\Directoria.cpp(75,42): error C2259: 'Directoria': cannot instantiate abstract class
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\Directoria.h(12): message : see declaration of 'Directoria'
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\Directoria.cpp(75,42): message : due to following members:
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\Directoria.cpp(75,42): message : 'std::string *ObjetoGeral::dirMaisElementos(void)': is abstract
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\ObjetoGeral.h(19): message : see declaration of 'ObjetoGeral::dirMaisElementos'
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\Directoria.cpp(86): error C2259: 'Ficheiro': cannot instantiate abstract class
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\Ficheiro.h(9): message : see declaration of 'Ficheiro'
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\Directoria.cpp(86): message : due to following members:
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\Directoria.cpp(86): message : 'std::string *ObjetoGeral::dirMaisElementos(void)': is abstract
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\ObjetoGeral.h(19): message : see declaration of 'ObjetoGeral::dirMaisElementos'
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\Directoria.cpp(86,34): error C2259: 'Ficheiro': cannot instantiate abstract class
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\Ficheiro.h(9): message : see declaration of 'Ficheiro'
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\Directoria.cpp(86,34): message : due to following members:
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\Directoria.cpp(86,34): message : 'std::string *ObjetoGeral::dirMaisElementos(void)': is abstract
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\ObjetoGeral.h(19): message : see declaration of 'ObjetoGeral::dirMaisElementos'
   Ficheiro.cpp
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\ObjetoGeral.h(19,35): error C2061: syntax error: identifier 'Directoria'
   ObjetoGeral.cpp
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\ObjetoGeral.h(19,35): error C2061: syntax error: identifier 'Directoria'
   ProjetoPOO_SistemaFicheiros.cpp
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\ObjetoGeral.h(19,35): error C2061: syntax error: identifier 'Directoria'
   SistemaFicheiros.cpp
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\ObjetoGeral.h(19,35): error C2061: syntax error: identifier 'Directoria'
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\SistemaFicheiros.cpp(5): error C2259: 'Directoria': cannot instantiate abstract class
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\Directoria.h(12): message : see declaration of 'Directoria'
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\SistemaFicheiros.cpp(5): message : due to following members:
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\SistemaFicheiros.cpp(5): message : 'std::string *ObjetoGeral::dirMaisElementos(void)': is abstract
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\ObjetoGeral.h(19): message : see declaration of 'ObjetoGeral::dirMaisElementos'
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\SistemaFicheiros.cpp(5,23): error C2259: 'Directoria': cannot instantiate abstract class
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\Directoria.h(12): message : see declaration of 'Directoria'
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\SistemaFicheiros.cpp(5,23): message : due to following members:
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\SistemaFicheiros.cpp(5,23): message : 'std::string *ObjetoGeral::dirMaisElementos(void)': is abstract
+C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\ObjetoGeral.h(19): message : see declaration of 'ObjetoGeral::dirMaisElementos'
   Generating Code...
-  ProjetoPOO_SistemaFicheiros.vcxproj -> C:\Users\ProHa\Desktop\POO_Proj_SistemaFicheiros\x64\Debug\ProjetoPOO_SistemaFicheiros.exe

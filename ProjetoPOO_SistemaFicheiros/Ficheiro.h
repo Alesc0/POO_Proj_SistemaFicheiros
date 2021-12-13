@@ -12,6 +12,7 @@ public:
 	Ficheiro();
 	~Ficheiro();
 	virtual void treeView(int nivel);
+	virtual int countFiles();
 
 private:
 

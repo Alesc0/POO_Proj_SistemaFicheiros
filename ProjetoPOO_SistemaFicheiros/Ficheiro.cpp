@@ -20,3 +20,8 @@ void Ficheiro::treeView(int nivel)
 	FileSpaces(nivel);
 	cout << returnNome() << endl;
 }
+
+int Ficheiro::countFiles()
+{
+	return 1;
+}

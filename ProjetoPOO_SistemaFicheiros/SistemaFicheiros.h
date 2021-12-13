@@ -16,7 +16,9 @@ public:
 	Directoria* outRoot();
 	bool Load(const string& path);
 	int ContarFicheiros();
+	int ContarDirectorias();
 	int Memoria();
+	string* DirectoriaMaisElementos();
 private:
 
 };

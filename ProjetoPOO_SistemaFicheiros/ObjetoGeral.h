@@ -14,6 +14,8 @@ public:
 	void setNome(string nome);
 	string returnNome();
 	virtual void treeView(int nivel);
+	virtual int countFiles();
+	virtual int countDirs();
 private:
 
 };
