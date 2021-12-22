@@ -19,6 +19,7 @@ public:
 	int ContarDirectorias();
 	int Memoria();
 	string* DirectoriaMaisElementos();
+	string* DirectoriaMenosElementos();
 private:
 
 };

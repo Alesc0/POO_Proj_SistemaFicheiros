@@ -34,26 +34,73 @@ int Directoria::countDirs()
 	return c + 1;
 }
 
-string* Directoria::dirMaisElementos(Directoria* dir, int c) {
-	int atualc = 0;
-
-	list<ObjetoGeral*>::iterator it = Items.begin();
-	for (it; it != Items.end(); it++)
-	{
-		if (typeid(*it).name() == typeid(Directoria*).name()) {
-			atualc++;
-			(*it)->dirmaiselementos(dir, c);
-		}
-	}
+int Directoria::dirMaisElementos(string*& dir, int c) {
+	int atualc = (int)Items.size();
 
 	if (atualc > c) {
 		c = atualc;
-		dir = this;
+		dir = new string(this->getNome());
 	}
-	return new string(dir->returnNome());
+	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
+	{
+		c = (*it)->dirMaisElementos(dir, c);
+	}
+	return atualc;
 }
 
-bool Directoria::processItems(const string& path, Directoria* nowDir)
+int Directoria::dirMenosElementos(string*& dir, int c) {
+	if (c == -1) c = (int)Items.size();
+	int atualc = (int)Items.size();
+
+	if (atualc < c) {
+		c = atualc;
+		dir = new string(this->getNome());
+	}
+	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
+	{
+		c = (*it)->dirMenosElementos(dir, c);
+	}
+	return atualc;
+}
+
+int Directoria::fichMaior(string*& fich, int c)
+{
+	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
+	{
+		c = (*it)->fichMaior(fich, c);
+	}
+	return c;
+}
+
+int Directoria::getSize()
+{
+	int _size = 0;
+	_size = getNome().size();
+	_size += sizeof(getParent());
+	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
+	{
+		_size += (*it)->getSize();
+	}
+	return _size;
+}
+
+int Directoria::DirectoriaMaisEspaco(int c, string*& dir) {
+	int atualc = getSize();
+	string path = "";
+	if (atualc > c) {
+		c = atualc;
+		dir = new string(this->getNome());
+		path += this->getNome();
+	}
+	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
+	{
+
+	}
+	return 1;
+}
+
+
+bool Directoria::processItems(const string& path)
 {
 	DIR* dir;
 	struct dirent* entry;
@@ -74,21 +121,17 @@ bool Directoria::processItems(const string& path, Directoria* nowDir)
 			{
 				Directoria* atualDir = new Directoria();
 				atualDir->setNome(entry->d_name);
-				atualDir->parent = this;
-				if (nowDir != NULL)
-					nowDir->Items.push_back(atualDir);
-				else
-					Items.push_back(atualDir);
-				processItems(p, atualDir);
+				atualDir->setParent(this);
+				Items.push_back(atualDir);
+				atualDir->processItems(p);
 			}
 			else if (S_ISREG(status.st_mode)) // if file
 			{
 				Ficheiro* fich = new Ficheiro();
 				fich->setNome(entry->d_name);
-				if (nowDir != NULL)
-					nowDir->Items.push_back(fich);
-				else
-					Items.push_back(fich);
+				fich->setTamanho(status.st_size);
+				fich->setParent(this);
+				Items.push_back(fich);
 			}
 		}
 	}
@@ -103,10 +146,12 @@ void DirSpaces(int n) {
 	}
 }
 
-void Directoria::treeView(int nivel = 0)
+void Directoria::treeView(int nivel)
 {
 	DirSpaces(nivel);
-	cout << returnNome() << endl;
+	string* str = new string();
+	getPath(str);
+	cout << getNome() << " --- " << *str << endl;
 	list<ObjetoGeral*>::iterator it = Items.begin();
 	for (it; it != Items.end(); it++)
 	{

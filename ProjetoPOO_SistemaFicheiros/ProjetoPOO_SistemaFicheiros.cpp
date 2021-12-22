@@ -14,7 +14,7 @@ int main()
 	int i = 0, r = 0;
 	bool loadCheck = SF.Load("C:\\Users\\ProHa\\Desktop\\POO_Proj_SistemaFicheiros\\POOPROJ");
 
-	
+	SF.outRoot()->treeView();
 
 	return 0;
 }

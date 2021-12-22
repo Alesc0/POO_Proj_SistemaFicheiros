@@ -8,7 +8,7 @@ bool SistemaFicheiros::Load(const string& path) {
 	if (pos != string::npos) {
 		root->setNome(path.substr(pos + 1));
 	}
-	return root->processItems(path, NULL);
+	return root->processItems(path);
 }
 
 SistemaFicheiros::SistemaFicheiros()
@@ -30,8 +30,15 @@ int SistemaFicheiros::Memoria() {
 
 string* SistemaFicheiros::DirectoriaMaisElementos()
 {
-	Directoria* dir = NULL;
-	return root->dirMaisElementos(dir,0);
+	string* dir = NULL;
+	root->dirMaisElementos(dir);
+	return dir;
+}
+string* SistemaFicheiros::DirectoriaMenosElementos()
+{
+	string* dir = NULL;
+	root->dirMenosElementos(dir);
+	return dir;
 }
 
 int SistemaFicheiros::ContarFicheiros() {
