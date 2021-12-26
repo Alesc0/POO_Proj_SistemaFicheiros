@@ -12,9 +12,10 @@ int main()
 {
 	SistemaFicheiros SF;
 	int i = 0, r = 0;
-	bool loadCheck = SF.Load("C:\\Users\\ProHa\\Desktop\\POO_Proj_SistemaFicheiros\\POOPROJ");
+	bool loadCheck = SF.Load("C:\\Users\\Pedro\\Desktop\\POO_Proj_SistemaFicheiros\\POOPROJ");
 
-	SF.outRoot()->treeView();
+	SF.RemoverAll("subfolder","DIR");
+	SF.getRoot()->treeView();
 
 	return 0;
 }

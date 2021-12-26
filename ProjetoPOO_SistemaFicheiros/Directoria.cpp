@@ -84,20 +84,100 @@ int Directoria::getSize()
 	return _size;
 }
 
-int Directoria::DirectoriaMaisEspaco(int c, string*& dir) {
-	int atualc = getSize();
-	string path = "";
-	if (atualc > c) {
-		c = atualc;
-		dir = new string(this->getNome());
-		path += this->getNome();
-	}
+int Directoria::DirectoriaMaisEspaco(string& dir, int c) {
+
+	int atualc = 0;
+
 	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
 	{
+		if ((*it)->getTipo() == typeid(Ficheiro*).name()) {
+			atualc += (*it)->DirectoriaMaisEspaco(dir, c);
+		}
+		else
+		{
+			c = (*it)->DirectoriaMaisEspaco(dir, c);
+		}
+	}
+	if (atualc > c) {
+		c = atualc;
+		dir = this->getNome();
+	}
+	return c;
+}
+
+void Directoria::Search(const string& s, int Tipo, string& _path)
+{
+	//tipo 0 -> ficheiro
+	//tipo 1 -> directoria
+
+	if (getNome() == s)
+	{
+		string* path = new string();
+		if ((Tipo == 0) && (getTipo() == typeid(Ficheiro*).name())) {
+			getPath(path);
+			_path = *path;
+		}
+		else if ((Tipo == 1) && (getTipo() == typeid(Directoria*).name()))
+		{
+			getPath(path);
+			_path = *path;
+		}
+	}
+
+	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
+	{
+		if (_path != "") return;
+		(*it)->Search(s, Tipo, _path);
+	}
+}
+
+bool Directoria::RemoverAll(const string& s, const string& tipo, int del)
+{
+	string name = getNome();
+	string type = "";
+
+	if (name == s)
+	{
+		del = 1;
+	}
+
+	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it)
+	{
+		type = (*it)->getTipo();
+		name = (*it)->getNome();
+		(*it)->RemoverAll(s, tipo, del);
+
+		if (name == s)
+		{
+			del = 2;
+		}
+
+		if (del > 0) {
+			if (tipo == "DIR") {
+				if (type == typeid(Directoria*).name()) {
+					delete* it;
+					it = Items.erase(it);
+					if (del > 1) {
+						del = 0;
+					}
+					continue;
+				}
+			}
+			else
+			{
+				if (type == typeid(Ficheiro*).name()) {
+					it = Items.erase(it);
+					continue;
+				}
+			}
+		}
+		it++;
 
 	}
-	return 1;
+
+	return true;
 }
+
 
 
 bool Directoria::processItems(const string& path)
@@ -158,3 +238,9 @@ void Directoria::treeView(int nivel)
 		(*it)->treeView(nivel + 1);
 	}
 }
+
+string Directoria::getTipo()
+{
+	return typeid(this).name();
+}
+

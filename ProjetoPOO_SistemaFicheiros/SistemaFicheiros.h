@@ -13,13 +13,17 @@ class SistemaFicheiros
 public:
 	SistemaFicheiros();
 	~SistemaFicheiros();
-	Directoria* outRoot();
+	Directoria* getRoot();
+	string getRootPath();
 	bool Load(const string& path);
 	int ContarFicheiros();
 	int ContarDirectorias();
 	int Memoria();
 	string* DirectoriaMaisElementos();
 	string* DirectoriaMenosElementos();
+	string* DirectoriaMaisEspaco(); 
+	string* Search(const string& s, int Tipo);
+	bool RemoverAll(const string& s, const string& tipo);
 private:
 
 };

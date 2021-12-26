@@ -44,12 +44,17 @@ int ObjetoGeral::countDirs()
 
 void ObjetoGeral::getPath(string* fullpath)
 {
-	fullpath->insert(0,"\\");
+	fullpath->insert(0, "\\");
 	fullpath->insert(0, getNome());
 	Directoria* parent = getParent();
 	if (parent != NULL) {
 		parent->getPath(fullpath);
 	}
+}
+
+string ObjetoGeral::getTipo()
+{
+	return string();
 }
 
 

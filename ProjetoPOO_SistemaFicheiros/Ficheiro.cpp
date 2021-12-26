@@ -2,6 +2,7 @@
 
 Ficheiro::Ficheiro()
 {
+
 }
 
 Ficheiro::~Ficheiro()
@@ -60,8 +61,25 @@ int Ficheiro::getSize()
 	return _size;
 }
 
-int Ficheiro::DirectoriaMaisEspaco(int c, string*& dir)
+int Ficheiro::DirectoriaMaisEspaco(string& dir, int c)
 {
-	return 1;
+	return getSize();
+}
+
+void Ficheiro::Search(const string& s, int Tipo, string& path)
+{
+}
+
+bool Ficheiro::RemoverAll(const string& s, const string& tipo, int del)
+{
+	if (del)
+		delete this;
+	return true;
+}
+
+
+string Ficheiro::getTipo()
+{
+	return typeid(this).name();
 }
 

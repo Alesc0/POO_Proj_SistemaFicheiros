@@ -19,9 +19,14 @@ SistemaFicheiros::~SistemaFicheiros()
 {
 }
 
-Directoria* SistemaFicheiros::outRoot()
+Directoria* SistemaFicheiros::getRoot()
 {
 	return root;
+}
+
+string SistemaFicheiros::getRootPath()
+{
+	return pathToRoot;
 }
 
 int SistemaFicheiros::Memoria() {
@@ -41,10 +46,36 @@ string* SistemaFicheiros::DirectoriaMenosElementos()
 	return dir;
 }
 
+
+string* SistemaFicheiros::DirectoriaMaisEspaco() {
+	string dir;
+	root->DirectoriaMaisEspaco(dir);
+	string* ptr = new string(dir);
+	return ptr;
+}
+
 int SistemaFicheiros::ContarFicheiros() {
 	return root->countFiles();
 }
 
 int SistemaFicheiros::ContarDirectorias() {
 	return root->countDirs();
+}
+
+string* SistemaFicheiros::Search(const string& s, int Tipo) {
+	//tipo 0 -> ficheiro
+	//tipo 1 -> directoria
+
+	string path = "";
+	string* ptr = NULL;
+	root->Search(s, Tipo, path);
+	if (path == "") {
+		path = "Caminho não encontrado";
+	}
+	ptr = new string(path);
+	return ptr;
+
+}
+bool SistemaFicheiros::RemoverAll(const string& s, const string& tipo) {
+	return root->RemoverAll(s, tipo);
 }
