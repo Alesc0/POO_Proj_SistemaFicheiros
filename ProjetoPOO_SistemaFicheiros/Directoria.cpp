@@ -1,9 +1,12 @@
-#include <dirent.h>
+﻿#include <dirent.h>
 #include "Directoria.h"
+#include <string>
 
-Directoria::Directoria()
+Directoria::Directoria(string _nome, string _data, Directoria* _parent)
 {
-	//ctor
+	setNome(_nome);
+	setParent(_parent);
+	setData(_data);
 }
 
 Directoria::~Directoria()
@@ -77,6 +80,7 @@ int Directoria::getSize()
 	int _size = 0;
 	_size = getNome().size();
 	_size += sizeof(getParent());
+	_size += getData().size();
 	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
 	{
 		_size += (*it)->getSize();
@@ -113,11 +117,8 @@ void Directoria::Search(const string& s, int Tipo, string& _path)
 	if (getNome() == s)
 	{
 		string* path = new string();
-		if ((Tipo == 0) && (getTipo() == typeid(Ficheiro*).name())) {
-			getPath(path);
-			_path = *path;
-		}
-		else if ((Tipo == 1) && (getTipo() == typeid(Directoria*).name()))
+
+		if ((Tipo == 1) && (getTipo() == typeid(Directoria*).name()))
 		{
 			getPath(path);
 			_path = *path;
@@ -178,7 +179,78 @@ bool Directoria::RemoverAll(const string& s, const string& tipo, int del)
 	return true;
 }
 
+bool Directoria::MoveFicheiro(const string& Fich, const string& DirNova)
+{
+	Ficheiro* file = nullptr;
+	findFile(Fich, file);
+	Directoria* dir = nullptr;
+	findDir(DirNova, dir);
 
+	if (file == nullptr || dir == nullptr) {
+		return false;
+	}
+
+	Directoria* p = nullptr;
+	p = file->getParent();
+	p->Items.remove(file);
+
+	dir->Items.push_back(file);
+	file->setParent(dir);
+
+	return true;
+}
+
+void Directoria::findFile(string fich, Ficheiro*& fileptr)
+{
+	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
+	{
+		(*it)->findFile(fich, fileptr);
+	}
+}
+
+void Directoria::findDir(string dir, Directoria*& dirptr)
+{
+	if (getNome() == dir) {
+		dirptr = this;
+	}
+	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
+	{
+		(*it)->findDir(dir, dirptr);
+	}
+}
+
+bool Directoria::MoverDirectoria(const string& DirOld, const string& DirNew)
+{
+	Directoria* dirO = nullptr;
+	findDir(DirOld, dirO);
+	Directoria* dirN = nullptr;
+	findDir(DirNew, dirN);
+
+	Directoria* p = nullptr;
+	p = dirO->getParent();
+	p->Items.remove(dirO);
+
+	dirN->Items.push_back(dirO);
+	dirO->setParent(dirN);
+
+	return false;
+}
+
+string* Directoria::DataFicheiro(const string& ficheiro)
+{
+	Ficheiro* file = nullptr;
+	findFile(ficheiro, file);
+	if (file == nullptr) return new string("NULL");
+	return new string(file->getData());
+}
+
+void Directoria::RenomearFicheiros(const string& fich_old, const string& fich_new)
+{
+	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
+	{
+		(*it)->RenomearFicheiros(fich_old, fich_new);
+	}
+}
 
 bool Directoria::processItems(const string& path)
 {
@@ -189,7 +261,7 @@ bool Directoria::processItems(const string& path)
 	dir = opendir(path.c_str());
 
 	if (!dir) {
-		cout << "ERRO! Directoria n�o encontrada." << endl;
+		cout << "ERRO! Directoria não encontrada." << endl;
 		return false;
 	}
 	while ((entry = readdir(dir)) != NULL) {
@@ -199,18 +271,23 @@ bool Directoria::processItems(const string& path)
 
 			if (S_ISDIR(status.st_mode)) // if dir
 			{
-				Directoria* atualDir = new Directoria();
-				atualDir->setNome(entry->d_name);
-				atualDir->setParent(this);
+				struct tm data;
+				localtime_s(&data, &status.st_mtime);
+				char buffer[100];
+				strftime(buffer, 100, "%d/%m/%Y (%R)", &data);
+				string dt = buffer;
+				Directoria* atualDir = new Directoria(entry->d_name, dt, this);
 				Items.push_back(atualDir);
 				atualDir->processItems(p);
 			}
 			else if (S_ISREG(status.st_mode)) // if file
 			{
-				Ficheiro* fich = new Ficheiro();
-				fich->setNome(entry->d_name);
-				fich->setTamanho(status.st_size);
-				fich->setParent(this);
+				struct tm data;
+				localtime_s(&data, &status.st_mtime);
+				char buffer[100];
+				strftime(buffer, 100, "%d/%m/%Y (%R)", &data);
+				string dt = buffer;
+				Ficheiro* fich = new Ficheiro(entry->d_name, this, status.st_size, dt);
 				Items.push_back(fich);
 			}
 		}
@@ -226,16 +303,17 @@ void DirSpaces(int n) {
 	}
 }
 
-void Directoria::treeView(int nivel)
+void Directoria::Tree(int nivel)
 {
 	DirSpaces(nivel);
 	string* str = new string();
 	getPath(str);
-	cout << getNome() << " --- " << *str << endl;
+	string h = getData();
+	cout << getNome() << " --- " << h << endl;
 	list<ObjetoGeral*>::iterator it = Items.begin();
 	for (it; it != Items.end(); it++)
 	{
-		(*it)->treeView(nivel + 1);
+		(*it)->Tree(nivel + 1);
 	}
 }
 

@@ -1,8 +1,12 @@
 #include "Ficheiro.h"
+#include <string>
 
-Ficheiro::Ficheiro()
+Ficheiro::Ficheiro(string _nome, Directoria* _parent, int _tamanho, string _data)
 {
-
+	setNome(_nome);
+	setParent(_parent);
+	setData(_data);
+	tamanho = _tamanho;
 }
 
 Ficheiro::~Ficheiro()
@@ -16,10 +20,11 @@ void FileSpaces(int n) {
 	}
 }
 
-void Ficheiro::treeView(int nivel)
+void Ficheiro::Tree(int nivel)
 {
 	FileSpaces(nivel);
-	cout << getNome() << "---(" << tamanho << ")" << endl;
+	string h = getData();
+	cout << getNome() << "---(" << tamanho << ")" << h << endl;
 }
 
 int Ficheiro::countFiles()
@@ -58,6 +63,7 @@ int Ficheiro::getSize()
 	_size += getNome().size();
 	_size += sizeof(tamanho);
 	_size += sizeof(getParent());
+	_size += getData().size();
 	return _size;
 }
 
@@ -66,8 +72,13 @@ int Ficheiro::DirectoriaMaisEspaco(string& dir, int c)
 	return getSize();
 }
 
-void Ficheiro::Search(const string& s, int Tipo, string& path)
+void Ficheiro::Search(const string& s, int Tipo, string& _path)
 {
+	string* path = new string();
+	if ((Tipo == 0) && (getTipo() == typeid(Ficheiro*).name())) {
+		getPath(path);
+		_path = *path;
+	}
 }
 
 bool Ficheiro::RemoverAll(const string& s, const string& tipo, int del)
@@ -77,6 +88,33 @@ bool Ficheiro::RemoverAll(const string& s, const string& tipo, int del)
 	return true;
 }
 
+bool Ficheiro::MoveFicheiro(const string& Fich, const string& DirNova)
+{
+	return false;
+}
+
+void Ficheiro::findFile(string fich, Ficheiro*& fileptr)
+{
+	if (getNome() == fich) {
+		fileptr = this;
+	}
+}
+
+void Ficheiro::findDir(string fich, Directoria*& dirptr)
+{
+	return;
+}
+
+bool Ficheiro::MoverDirectoria(const string& DirOld, const string& DirNew)
+{
+	return false;
+}
+
+void Ficheiro::RenomearFicheiros(const string& fich_old, const string& fich_new)
+{
+	if (getNome() == fich_old)
+		setNome(fich_new);
+}
 
 string Ficheiro::getTipo()
 {

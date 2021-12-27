@@ -28,7 +28,7 @@ string ObjetoGeral::getNome()
 	return nome;
 }
 
-void ObjetoGeral::treeView(int nivel)
+void ObjetoGeral::Tree(int nivel)
 {
 }
 
@@ -52,9 +52,13 @@ void ObjetoGeral::getPath(string* fullpath)
 	}
 }
 
-string ObjetoGeral::getTipo()
+void ObjetoGeral::setData(string _data)
 {
-	return string();
+	data = _data;
 }
 
+string ObjetoGeral::getData()
+{
+	return data;
+}
 

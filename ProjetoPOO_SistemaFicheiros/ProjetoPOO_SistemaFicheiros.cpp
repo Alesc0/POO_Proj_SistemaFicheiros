@@ -14,8 +14,6 @@ int main()
 	int i = 0, r = 0;
 	bool loadCheck = SF.Load("C:\\Users\\Pedro\\Desktop\\POO_Proj_SistemaFicheiros\\POOPROJ");
 
-	SF.RemoverAll("subfolder","DIR");
-	SF.getRoot()->treeView();
 
 	return 0;
 }

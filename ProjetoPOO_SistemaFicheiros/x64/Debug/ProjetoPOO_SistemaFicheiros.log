@@ -1,3 +1,2 @@
-﻿  Directoria.cpp
-C:\Users\Pedro\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\Directoria.cpp(78,26): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+﻿  ProjetoPOO_SistemaFicheiros.cpp
   ProjetoPOO_SistemaFicheiros.vcxproj -> C:\Users\Pedro\Desktop\POO_Proj_SistemaFicheiros\x64\Debug\ProjetoPOO_SistemaFicheiros.exe
