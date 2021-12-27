@@ -39,6 +39,7 @@ public:
 	virtual void findDir(string dir, Directoria*& dirptr) = 0;
 	virtual bool MoverDirectoria(const string& DirOld, const string& DirNew) = 0;
 	virtual void RenomearFicheiros(const string& fich_old, const string& fich_new) = 0;
+	virtual bool Writing(Directoria* dir, ostream& f,int nmrTabs=0) = 0;
 private:
 
 };

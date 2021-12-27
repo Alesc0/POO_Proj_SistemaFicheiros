@@ -31,6 +31,7 @@ public:
 	void findDir(string dir, Directoria*& dirptr);
 	bool MoverDirectoria(const string& DirOld, const string& DirNew);
 	void RenomearFicheiros(const string& fich_old, const string& fich_new);
+	bool Writing(Directoria* dir, ostream& f, int nmrTabs);
 private:
 
 };

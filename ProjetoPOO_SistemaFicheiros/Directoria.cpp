@@ -1,6 +1,8 @@
 ﻿#include <dirent.h>
 #include "Directoria.h"
 #include <string>
+#include <iostream>
+#include <fstream>
 
 Directoria::Directoria(string _nome, string _data, Directoria* _parent)
 {
@@ -322,3 +324,26 @@ string Directoria::getTipo()
 	return typeid(this).name();
 }
 
+bool Directoria::Writing(Directoria* dir, ostream& f, int nmrTabs) {
+	string x = "";
+	for (int i = 0; i < nmrTabs; i++)
+	{
+		x += "\t";
+	}
+	string y = "";
+	for (int i = 0; i < nmrTabs; i++)
+	{
+		y += "\t";
+	}
+	f << x << "<directoria>" << endl;
+	f << y << "<nome>" << this->getNome() << "</nome>" << endl;
+	f << y << "<data>" << this->getData() << "</data>" << endl;
+	f << y << "<Items>" << endl;
+	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
+	{ 
+		(*it)->Writing(this,f,nmrTabs+2);
+	}
+	f << y << "</Items>" << endl;
+	f << x << "</directoria>" << endl;
+	return true;
+}

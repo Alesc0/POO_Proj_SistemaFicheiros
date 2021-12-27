@@ -30,6 +30,9 @@
     <ClCompile Include="ObjetoGeral.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="XMLHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SistemaFicheiros.h">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ObjetoGeral.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

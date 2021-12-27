@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <list>
 #include "Ficheiro.h"
+#include <iostream>
 #include "ObjetoGeral.h"
 
 using namespace std;
@@ -33,7 +34,7 @@ public:
 	bool MoverDirectoria(const string& DirOld, const string& DirNew);
 	string* DataFicheiro(const string& ficheiro);
 	void RenomearFicheiros(const string& fich_old, const string& fich_new);
-
+	bool Writing(Directoria* dir, ostream& f, int nmrTabs=0);
 private:
 
 };

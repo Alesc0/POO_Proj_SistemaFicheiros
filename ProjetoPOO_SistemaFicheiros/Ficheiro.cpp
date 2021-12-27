@@ -1,5 +1,6 @@
 #include "Ficheiro.h"
 #include <string>
+#include <fstream>
 
 Ficheiro::Ficheiro(string _nome, Directoria* _parent, int _tamanho, string _data)
 {
@@ -119,5 +120,24 @@ void Ficheiro::RenomearFicheiros(const string& fich_old, const string& fich_new)
 string Ficheiro::getTipo()
 {
 	return typeid(this).name();
+}
+
+bool Ficheiro::Writing(Directoria* dir, ostream& f, int nmrTabs=0) {
+	string x = "";
+	for (int i = 0; i < nmrTabs; i++)
+	{
+		x += "\t";
+	}
+	string y = "";
+	for (int i = 0; i < nmrTabs; i++)
+	{
+		y += "\t";
+	}
+	f << x << "<ficheiro>" << endl;
+	f << y << "<nome>" << this->getNome() << "</nome>" << endl;
+	f << y << "<data>" << this->getData() << "</data>" << endl;
+	f << y << "<tamanho>" << this->getSize() << "</tamanho>" << endl;
+	f << x << "</ficheiro>" << endl;
+	return true;
 }
 
