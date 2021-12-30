@@ -28,6 +28,7 @@ public:
 	bool MoverDirectoria(const string& DirOld, const string& DirNew);
 	string* DataFicheiro(const string& ficheiro);
 	void RenomearFicheiros(const string& fich_old, const string& fich_new);
+	bool ReadXml(const string& path);
 private:
 
 };

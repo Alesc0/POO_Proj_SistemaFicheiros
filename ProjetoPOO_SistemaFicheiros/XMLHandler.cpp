@@ -17,3 +17,9 @@ bool XMLHandler::WriteAll(Directoria* dir) {
 	f.close();
 	return true;
 }
+
+bool XMLHandler::ReadXml(const string& path) {
+
+	return true;
+}
+

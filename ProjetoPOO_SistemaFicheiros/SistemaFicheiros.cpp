@@ -1,5 +1,8 @@
 #include "SistemaFicheiros.h"
-
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <algorithm>
 
 bool SistemaFicheiros::Load(const string& path) {
 	pathToRoot = path;
@@ -9,6 +12,62 @@ bool SistemaFicheiros::Load(const string& path) {
 	}
 
 	return root->processItems(path);
+}
+
+bool SistemaFicheiros::ReadXml(const string& path) {
+	ifstream file;
+	string txt;
+	file.open(path);
+	string idk = "C:\\Users\\Sheep\\Desktop\\Repositories\\POO_Proj_SistemaFicheiros\\POOPROJ";
+	pathToRoot = "";
+
+	getline(file, txt);
+	txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
+	if (!(txt[0] == '<' && (txt.find("directoria") != string::npos))) {
+		return false;
+	}
+
+	getline(file, txt);
+	txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
+	if (txt[0] == '<' && (txt.find("nome") != string::npos)) {
+		string nome = txt.substr(6, txt.length() - 13);
+		getline(file, txt);
+		txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
+		if (txt[0] == '<' && (txt.find("data") != string::npos)) {
+			string data = txt.substr(6, txt.length() - 13);
+
+			root = new Directoria(nome, data);
+
+			while (getline(file, txt)) {
+				txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
+				if (txt[0] == '<' && (txt.find("directoria") != string::npos) && !(txt.find("/directoria") != string::npos)) {
+					//cout << "dir";
+					root->getItems().push_back(root->processXML(root, file));
+				}
+				else if (txt[0] == '<' && (txt.find("ficheiro") != string::npos) && !(txt.find("/ficheiro") != string::npos)) {
+					//cout << "fic" << endl;
+					getline(file, txt);
+					txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
+					string nome = txt.substr(6, txt.length() - 13);
+					getline(file, txt);
+					txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
+					string data = txt.substr(6, txt.length() - 13);
+					getline(file, txt);
+					txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
+					int tamanho = stoi(txt.substr(9, txt.length() - 19));
+					Ficheiro* f = new Ficheiro(nome, root, 10, data);
+					root->getItems().push_back(f);
+					
+				}
+
+			}
+
+		}
+	}
+
+
+
+	return true;
 }
 
 SistemaFicheiros::SistemaFicheiros()

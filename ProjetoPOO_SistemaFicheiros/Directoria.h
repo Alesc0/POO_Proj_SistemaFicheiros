@@ -15,7 +15,10 @@ class Directoria : public ObjetoGeral
 	list<ObjetoGeral*> Items;
 public:
 	Directoria(string _nome,string data, Directoria* _parent = nullptr);
+	Directoria();
 	~Directoria();
+	void setItems(list<ObjetoGeral*> Items);
+	list<ObjetoGeral*> getItems();
 	string getTipo();
 	int countFiles();
 	int countDirs();
@@ -35,6 +38,7 @@ public:
 	string* DataFicheiro(const string& ficheiro);
 	void RenomearFicheiros(const string& fich_old, const string& fich_new);
 	bool Writing(Directoria* dir, ostream& f, int nmrTabs=0);
+	Directoria* processXML(Directoria* parent,ifstream& file); 
 private:
 
 };

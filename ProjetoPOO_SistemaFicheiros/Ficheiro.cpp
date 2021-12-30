@@ -9,6 +9,10 @@ Ficheiro::Ficheiro(string _nome, Directoria* _parent, int _tamanho, string _data
 	setData(_data);
 	tamanho = _tamanho;
 }
+Ficheiro::Ficheiro()
+{
+
+}
 
 Ficheiro::~Ficheiro()
 {

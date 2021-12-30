@@ -11,6 +11,11 @@ Directoria::Directoria(string _nome, string _data, Directoria* _parent)
 	setData(_data);
 }
 
+Directoria::Directoria()
+{
+
+}
+
 Directoria::~Directoria()
 {
 	//dtor
@@ -27,6 +32,15 @@ int Directoria::countFiles()
 	return c;
 }
 
+void Directoria::setItems(list<ObjetoGeral*> _Items) {
+	Items.assign(_Items.begin(),_Items.end());
+	//std::copy(_Items.begin(), _Items.end(), Items);
+}
+
+list<ObjetoGeral*> Directoria::getItems()
+{
+	return Items;
+}
 
 int Directoria::countDirs()
 {
@@ -252,6 +266,55 @@ void Directoria::RenomearFicheiros(const string& fich_old, const string& fich_ne
 	{
 		(*it)->RenomearFicheiros(fich_old, fich_new);
 	}
+}
+
+ Directoria* Directoria::processXML(Directoria* parent, ifstream& file) {
+	string txt;
+
+	getline(file, txt);
+	txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
+	if (!(txt[0] == '<' && (txt.find("directoria") != string::npos))) {
+		return nullptr;
+	}
+
+	getline(file, txt);
+	txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
+	if (txt[0] == '<' && (txt.find("nome") != string::npos)) {
+		string nome = txt.substr(6, txt.length() - 13);
+		getline(file, txt);
+		txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
+		if (txt[0] == '<' && (txt.find("data") != string::npos)) {
+			string data = txt.substr(6, txt.length() - 13);
+
+			this->setNome(nome);
+			this->setData(data);
+			this->setParent(parent);
+			while (getline(file, txt)) {
+				txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
+				if (txt[0] == '<' && (txt.find("directoria") != string::npos) && !(txt.find("/directoria") != string::npos)) {
+					//cout << "dir";
+					this->getItems().push_back(this->processXML(this, file));
+				}
+				else if (txt[0] == '<' && (txt.find("ficheiro") != string::npos) && !(txt.find("/ficheiro") != string::npos)) {
+					//cout << "fic" << endl;
+					getline(file, txt);
+					txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
+					string nome = txt.substr(6, txt.length() - 13);
+					getline(file, txt);
+					txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
+					string data = txt.substr(6, txt.length() - 13);
+					getline(file, txt);
+					txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
+					int tamanho = stoi(txt.substr(9, txt.length() - 19));
+					Ficheiro* f = new Ficheiro(nome, this, 10, data);
+					this->getItems().push_back(f);
+				}
+
+			}
+
+		}
+	}
+	return this;
 }
 
 bool Directoria::processItems(const string& path)

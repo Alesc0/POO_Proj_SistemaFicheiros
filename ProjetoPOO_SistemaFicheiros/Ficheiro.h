@@ -14,6 +14,7 @@ class Ficheiro : public ObjetoGeral
 	int tamanho = 0;
 public:
 	Ficheiro(string _nome, Directoria* _parent, int _tamanho, string _data);
+	Ficheiro();
 	~Ficheiro();
 	virtual string getTipo();
 	void Tree(int nivel);

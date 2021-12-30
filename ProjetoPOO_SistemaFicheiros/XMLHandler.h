@@ -13,6 +13,7 @@ public:
 	XMLHandler();
 	~XMLHandler();
 	bool WriteAll(Directoria* dir);
+	bool ReadXml(const string& path);
 private:
 
 };
