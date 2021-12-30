@@ -18,22 +18,9 @@ int main()
 	
 	//bool loadCheck = SF.Load("C:\\Users\\Pedro\\Desktop\\POO_Proj_SistemaFicheiros\\POOPROJ");
 	//bool loadCheck = SF.Load("C:\\Users\\Sheep\\Desktop\\Repositories\\POO_Proj_SistemaFicheiros\\POOPROJ");
-	//bool loadCheck = SF.ReadXml("C:\\Users\\Sheep\\Desktop\\Repositories\\POO_Proj_SistemaFicheiros\\ProjetoPOO_SistemaFicheiros\\XML.xml");
-	//SF.getRoot()->Tree();
-	Directoria* idk = new Directoria("ola", "idk");
-	Ficheiro* idk2 = new Ficheiro("nome", idk, 50, "32312");
-	list<ObjetoGeral*> asdasd;
-	asdasd.push_back(idk2);
-	idk->setItems(asdasd);
-	for (list<ObjetoGeral*>::iterator it= idk->getItems().begin(); it != idk->getItems().end(); it++)
-	{
-		cout << (*it)->getNome();
-	}
+	//SF.ReadXml("C:\\Users\\Sheep\\Desktop\\Repositories\\POO_Proj_SistemaFicheiros\\ProjetoPOO_SistemaFicheiros\\XML.xml");
 
-	//ObjetoGeral* asd = idk->getItems().begin();
-	//cout << asd->getNome();
-	
-	//XMLHandler x;
-	//x.WriteAll(SF.getRoot());
+	SF.getRoot()->Tree();
+
 	return 0;
 }

@@ -38,7 +38,7 @@ public:
 	string* DataFicheiro(const string& ficheiro);
 	void RenomearFicheiros(const string& fich_old, const string& fich_new);
 	bool Writing(Directoria* dir, ostream& f, int nmrTabs=0);
-	Directoria* processXML(Directoria* parent,ifstream& file); 
+	Directoria* processXML(ifstream& file); 
 private:
 
 };

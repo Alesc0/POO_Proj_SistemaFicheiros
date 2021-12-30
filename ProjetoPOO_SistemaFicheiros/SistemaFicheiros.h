@@ -9,7 +9,7 @@
 class SistemaFicheiros
 {
 	string pathToRoot;
-	Directoria* root = NULL;
+	Directoria* root = nullptr;
 public:
 	SistemaFicheiros();
 	~SistemaFicheiros();

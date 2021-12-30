@@ -33,7 +33,7 @@ int Directoria::countFiles()
 }
 
 void Directoria::setItems(list<ObjetoGeral*> _Items) {
-	Items.assign(_Items.begin(),_Items.end());
+	Items.assign(_Items.begin(), _Items.end());
 	//std::copy(_Items.begin(), _Items.end(), Items);
 }
 
@@ -268,52 +268,57 @@ void Directoria::RenomearFicheiros(const string& fich_old, const string& fich_ne
 	}
 }
 
- Directoria* Directoria::processXML(Directoria* parent, ifstream& file) {
+Directoria* Directoria::processXML(ifstream& file) {
 	string txt;
 
-	getline(file, txt);
-	txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
-	if (!(txt[0] == '<' && (txt.find("directoria") != string::npos))) {
-		return nullptr;
-	}
 
-	getline(file, txt);
-	txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
-	if (txt[0] == '<' && (txt.find("nome") != string::npos)) {
-		string nome = txt.substr(6, txt.length() - 13);
+	do {
 		getline(file, txt);
 		txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
-		if (txt[0] == '<' && (txt.find("data") != string::npos)) {
-			string data = txt.substr(6, txt.length() - 13);
 
-			this->setNome(nome);
-			this->setData(data);
-			this->setParent(parent);
-			while (getline(file, txt)) {
+
+		if ((txt.find("<directoria>") != string::npos)) {
+			cout << "dir";
+			getline(file, txt);
+			txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
+			if ((txt.find("<nome>") != string::npos)) {
+				string nome = txt.substr(6, txt.length() - 13);
+				getline(file, txt);
 				txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
-				if (txt[0] == '<' && (txt.find("directoria") != string::npos) && !(txt.find("/directoria") != string::npos)) {
-					//cout << "dir";
-					this->getItems().push_back(this->processXML(this, file));
-				}
-				else if (txt[0] == '<' && (txt.find("ficheiro") != string::npos) && !(txt.find("/ficheiro") != string::npos)) {
-					//cout << "fic" << endl;
-					getline(file, txt);
-					txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
-					string nome = txt.substr(6, txt.length() - 13);
-					getline(file, txt);
-					txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
+
+				if (txt.find("<data>") != string::npos) {
 					string data = txt.substr(6, txt.length() - 13);
+					Directoria* atualDir = new Directoria(nome, data, this);
+					Items.push_back(atualDir);
 					getline(file, txt);
 					txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
-					int tamanho = stoi(txt.substr(9, txt.length() - 19));
-					Ficheiro* f = new Ficheiro(nome, this, 10, data);
-					this->getItems().push_back(f);
+					cout << txt << endl;
+					if (txt.find("<Items>") != string::npos) {
+						atualDir->processXML(file);
+					}
 				}
-
 			}
-
 		}
-	}
+		else if ((txt.find("<ficheiro>") != string::npos)) {
+			cout << "fic" << endl;
+			getline(file, txt);
+			txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
+			string nome = txt.substr(6, txt.length() - 13);
+			getline(file, txt);
+			txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
+			string data = txt.substr(6, txt.length() - 13);
+			getline(file, txt);
+			txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
+			int tamanho = stoi(txt.substr(9, txt.length() - 19));
+			Ficheiro* f = new Ficheiro(nome, this, 10, data);
+			Items.push_back(f);
+		}
+
+
+
+	} while (!(txt.find("</Items>") != string::npos));
+
+
 	return this;
 }
 
@@ -370,11 +375,16 @@ void DirSpaces(int n) {
 
 void Directoria::Tree(int nivel)
 {
+
 	DirSpaces(nivel);
+
 	string* str = new string();
+
 	getPath(str);
+
 	string h = getData();
 	cout << getNome() << " --- " << h << endl;
+
 	list<ObjetoGeral*>::iterator it = Items.begin();
 	for (it; it != Items.end(); it++)
 	{
@@ -403,8 +413,8 @@ bool Directoria::Writing(Directoria* dir, ostream& f, int nmrTabs) {
 	f << y << "<data>" << this->getData() << "</data>" << endl;
 	f << y << "<Items>" << endl;
 	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
-	{ 
-		(*it)->Writing(this,f,nmrTabs+2);
+	{
+		(*it)->Writing(this, f, nmrTabs + 2);
 	}
 	f << y << "</Items>" << endl;
 	f << x << "</directoria>" << endl;

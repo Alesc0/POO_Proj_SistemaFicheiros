@@ -1,2 +1,4 @@
-﻿  ProjetoPOO_SistemaFicheiros.cpp
+﻿  Directoria.cpp
+C:\Users\Sheep\Desktop\Repositories\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\Directoria.cpp(97,26): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Sheep\Desktop\Repositories\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\Directoria.cpp(99,25): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
   ProjetoPOO_SistemaFicheiros.vcxproj -> C:\Users\Sheep\Desktop\Repositories\POO_Proj_SistemaFicheiros\x64\Debug\ProjetoPOO_SistemaFicheiros.exe
