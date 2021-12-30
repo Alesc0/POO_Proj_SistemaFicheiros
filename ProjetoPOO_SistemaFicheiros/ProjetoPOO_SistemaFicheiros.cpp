@@ -14,7 +14,7 @@ int main()
 	int i = 0, r = 0;
 	bool loadCheck = SF.Load("C:\\Users\\Pedro\\Desktop\\POO_Proj_SistemaFicheiros\\POOPROJ");
 
-	cout << SF.MoverDirectoria("folder 1","folder 2");
+	cout << *SF.DirectoriaMaisElementos();
 
 	return 0;
 }

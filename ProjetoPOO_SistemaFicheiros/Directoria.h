@@ -22,10 +22,10 @@ public:
 	int countDirs();
 	bool processItems(const string& path);
 	void Tree(int nivel = 0);
-	void TreeToFile(const string* file, ofstream &stream, int nivel = 0);
-	int dirMaisElementos(string*& dir, int c = 0);
-	int dirMenosElementos(string*& dir, int c = -1);
-	int fichMaior(string*& fich, int c = 0);
+	void TreeToFile(const string* file, ofstream& stream, int nivel = 0);
+	int dirMaisElementos(string& dir, int c = 0);
+	int dirMenosElementos(string& dir, int c = -1);
+	int fichMaior(string& fich, int c = 0);
 	int getSize();
 	int DirectoriaMaisEspaco(string& dir, int c = 0);
 	void Search(const string& s, int Tipo, string& path);

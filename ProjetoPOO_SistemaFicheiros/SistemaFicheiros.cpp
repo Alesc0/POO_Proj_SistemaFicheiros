@@ -36,15 +36,17 @@ int SistemaFicheiros::Memoria() {
 
 string* SistemaFicheiros::DirectoriaMaisElementos()
 {
-	string* dir = NULL;
+	string dir = "";
 	root->dirMaisElementos(dir);
-	return dir;
+	string* ptr = new string(dir);
+	return ptr;
 }
 string* SistemaFicheiros::DirectoriaMenosElementos()
 {
-	string* dir = NULL;
+	string dir = NULL;
 	root->dirMenosElementos(dir);
-	return dir;
+	string* ptr = new string(dir);
+	return ptr;
 }
 
 
@@ -128,7 +130,7 @@ void SistemaFicheiros::Tree(const string* fich) {
 	{
 		ofstream stream;
 		stream.open(*fich);
-		root->TreeToFile(fich,stream);
+		root->TreeToFile(fich, stream);
 		stream.close();
 	}
 }

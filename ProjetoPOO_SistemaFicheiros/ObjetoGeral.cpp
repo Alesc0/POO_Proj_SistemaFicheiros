@@ -7,6 +7,7 @@ ObjetoGeral::ObjetoGeral()
 
 ObjetoGeral::~ObjetoGeral()
 {
+	delete parent;
 }
 void ObjetoGeral::setNome(string _nome)
 {
@@ -31,7 +32,7 @@ string ObjetoGeral::getNome()
 string ObjetoGeral::getPath()
 {
 	Directoria* parent = getParent();
-	if (parent != NULL) {
+	if (parent != nullptr) {
 		return parent->getPath() + "\\" + getNome();
 	}
 	return getNome();

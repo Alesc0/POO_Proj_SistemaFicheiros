@@ -13,7 +13,10 @@ Directoria::Directoria(string _nome, string _data, Directoria* _parent)
 
 Directoria::~Directoria()
 {
-	//dtor
+	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
+	{
+		delete* it;
+	}
 }
 
 int Directoria::countFiles()
@@ -39,36 +42,36 @@ int Directoria::countDirs()
 	return c;
 }
 
-int Directoria::dirMaisElementos(string*& dir, int c) {
+int Directoria::dirMaisElementos(string& dir, int c) {
 	int atualc = (int)Items.size();
 
 	if (atualc > c) {
 		c = atualc;
-		dir = new string(this->getNome());
+		dir = this->getNome();
 	}
 	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
 	{
 		c = (*it)->dirMaisElementos(dir, c);
 	}
-	return atualc;
+	return c;
 }
 
-int Directoria::dirMenosElementos(string*& dir, int c) {
+int Directoria::dirMenosElementos(string& dir, int c) {
 	if (c == -1) c = (int)Items.size();
 	int atualc = (int)Items.size();
 
 	if (atualc < c) {
 		c = atualc;
-		dir = new string(this->getNome());
+		dir = this->getNome();
 	}
 	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
 	{
 		c = (*it)->dirMenosElementos(dir, c);
 	}
-	return atualc;
+	return c;
 }
 
-int Directoria::fichMaior(string*& fich, int c)
+int Directoria::fichMaior(string& fich, int c)
 {
 	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
 	{
@@ -359,9 +362,8 @@ string DirSpaces(int n) {
 
 void Directoria::Tree(int nivel)
 {
-	DirSpaces(nivel);
 	string h = getData();
-	cout << getNome() << " --- " << h << endl;
+	cout << DirSpaces(nivel) << getNome() << " --- " << h << endl;
 	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
 	{
 		(*it)->Tree(nivel + 1);
