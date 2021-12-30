@@ -1,6 +1,8 @@
 ﻿#include <dirent.h>
 #include "Directoria.h"
 #include <string>
+#include <iostream>
+#include <fstream>
 
 Directoria::Directoria(string _nome, string _data, Directoria* _parent)
 {
@@ -28,13 +30,13 @@ int Directoria::countFiles()
 
 int Directoria::countDirs()
 {
-	int c = 0;
+	int c = 1;
 	list<ObjetoGeral*>::iterator it = Items.begin();
 	for (it; it != Items.end(); it++)
 	{
 		c += (*it)->countDirs();
 	}
-	return c + 1;
+	return c;
 }
 
 int Directoria::dirMaisElementos(string*& dir, int c) {
@@ -120,8 +122,7 @@ void Directoria::Search(const string& s, int Tipo, string& _path)
 
 		if ((Tipo == 1) && (getTipo() == typeid(Directoria*).name()))
 		{
-			getPath(path);
-			_path = *path;
+			_path = getPath();
 		}
 	}
 
@@ -204,7 +205,9 @@ void Directoria::findFile(string fich, Ficheiro*& fileptr)
 {
 	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
 	{
-		(*it)->findFile(fich, fileptr);
+		if (fileptr == nullptr)
+			(*it)->findFile(fich, fileptr);
+
 	}
 }
 
@@ -215,7 +218,9 @@ void Directoria::findDir(string dir, Directoria*& dirptr)
 	}
 	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
 	{
-		(*it)->findDir(dir, dirptr);
+		if (dirptr == nullptr)
+			(*it)->findDir(dir, dirptr);
+
 	}
 }
 
@@ -226,6 +231,12 @@ bool Directoria::MoverDirectoria(const string& DirOld, const string& DirNew)
 	Directoria* dirN = nullptr;
 	findDir(DirNew, dirN);
 
+	if (dirO->dirInsideDir(dirN))
+		return false;
+
+	if (dirO == nullptr || dirN == nullptr) {
+		return false;
+	}
 	Directoria* p = nullptr;
 	p = dirO->getParent();
 	p->Items.remove(dirO);
@@ -233,7 +244,21 @@ bool Directoria::MoverDirectoria(const string& DirOld, const string& DirNew)
 	dirN->Items.push_back(dirO);
 	dirO->setParent(dirN);
 
-	return false;
+	return true;
+}
+
+bool Directoria::dirInsideDir(Directoria* dirB)
+{
+	bool check = false;
+	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
+	{
+		if (*it == dirB)
+		{
+			return true;
+		}
+		check = (*it)->dirInsideDir(dirB);
+	}
+	return check;
 }
 
 string* Directoria::DataFicheiro(const string& ficheiro)
@@ -249,6 +274,33 @@ void Directoria::RenomearFicheiros(const string& fich_old, const string& fich_ne
 	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
 	{
 		(*it)->RenomearFicheiros(fich_old, fich_new);
+	}
+}
+
+void Directoria::FicheiroDuplicados(list<string>& l, bool& _found)
+{
+	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
+	{
+		if (!_found) (*it)->FicheiroDuplicados(l, _found);
+	}
+}
+
+void Directoria::PesquisarAllFicheiros(list<string>& lres, const string& file)
+{
+	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
+	{
+		(*it)->PesquisarAllFicheiros(lres, file);
+	}
+}
+
+void Directoria::PesquisarAllDirectorias(list<string>& lres, const string& dir)
+{
+	if (getNome() == dir) {
+		lres.push_back(getPath());
+	}
+	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
+	{
+		(*it)->PesquisarAllDirectorias(lres, dir);
 	}
 }
 
@@ -296,24 +348,33 @@ bool Directoria::processItems(const string& path)
 	return true;
 }
 
-void DirSpaces(int n) {
+string DirSpaces(int n) {
+	string spaces = "";
 	for (int i = 0; i < n; i++)
 	{
-		cout << "\t";
+		spaces.append("\t");
 	}
+	return spaces;
 }
 
 void Directoria::Tree(int nivel)
 {
 	DirSpaces(nivel);
-	string* str = new string();
-	getPath(str);
 	string h = getData();
 	cout << getNome() << " --- " << h << endl;
-	list<ObjetoGeral*>::iterator it = Items.begin();
-	for (it; it != Items.end(); it++)
+	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
 	{
 		(*it)->Tree(nivel + 1);
+	}
+}
+
+void Directoria::TreeToFile(const string* file, ofstream& stream, int nivel)
+{
+	string h = DirSpaces(nivel) + getNome() + " --- " + getData() + "---" + getPath() + "\n";
+	stream << h;
+	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
+	{
+		(*it)->TreeToFile(file, stream, nivel + 1);
 	}
 }
 

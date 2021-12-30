@@ -1,5 +1,7 @@
 #include "Ficheiro.h"
 #include <string>
+#include <iostream>
+#include <fstream>
 
 Ficheiro::Ficheiro(string _nome, Directoria* _parent, int _tamanho, string _data)
 {
@@ -13,11 +15,13 @@ Ficheiro::~Ficheiro()
 {
 }
 
-void FileSpaces(int n) {
+string FileSpaces(int n) {
+	string spaces = "";
 	for (int i = 0; i < n; i++)
 	{
-		cout << "\t";
+		spaces.append("\t");
 	}
+	return spaces;
 }
 
 void Ficheiro::Tree(int nivel)
@@ -25,11 +29,23 @@ void Ficheiro::Tree(int nivel)
 	FileSpaces(nivel);
 	string h = getData();
 	cout << getNome() << "---(" << tamanho << ")" << h << endl;
+
+}
+
+void Ficheiro::TreeToFile(const string* file, ofstream& stream, int nivel)
+{
+	string h = FileSpaces(nivel) + getNome() + "---(" + to_string(tamanho) + ")" + getData() + "\n";
+	stream << h;
 }
 
 int Ficheiro::countFiles()
 {
 	return 1;
+}
+
+int Ficheiro::countDirs()
+{
+	return 0;
 }
 
 int Ficheiro::dirMaisElementos(string*& dir, int c)
@@ -76,8 +92,8 @@ void Ficheiro::Search(const string& s, int Tipo, string& _path)
 {
 	string* path = new string();
 	if ((Tipo == 0) && (getTipo() == typeid(Ficheiro*).name())) {
-		getPath(path);
-		_path = *path;
+
+		_path = getPath();
 	}
 }
 
@@ -110,11 +126,41 @@ bool Ficheiro::MoverDirectoria(const string& DirOld, const string& DirNew)
 	return false;
 }
 
+bool Ficheiro::dirInsideDir(Directoria* dirB)
+{
+	return false;
+}
+
 void Ficheiro::RenomearFicheiros(const string& fich_old, const string& fich_new)
 {
 	if (getNome() == fich_old)
 		setNome(fich_new);
 }
+
+void Ficheiro::FicheiroDuplicados(list<string>& l, bool& _found)
+{
+	for (list<string>::iterator it = l.begin(); it != l.end(); it++)
+	{
+		if (*it == getNome())
+			_found = true;
+	}
+	if (!_found)
+		l.push_back(getNome());
+
+}
+
+void Ficheiro::PesquisarAllFicheiros(list<string>& lres, const string& file)
+{
+	if (file == getNome())
+	{
+		lres.push_back(getPath());
+	}
+}
+
+void Ficheiro::PesquisarAllDirectorias(list<string>& lres, const string& dir)
+{
+}
+
 
 string Ficheiro::getTipo()
 {

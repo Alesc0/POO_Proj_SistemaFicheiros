@@ -5,6 +5,7 @@
 #include "Directoria.h"
 #include "SistemaFicheiros.h"
 #include "Ficheiro.h"
+#include <list>
 
 class SistemaFicheiros
 {
@@ -28,6 +29,10 @@ public:
 	bool MoverDirectoria(const string& DirOld, const string& DirNew);
 	string* DataFicheiro(const string& ficheiro);
 	void RenomearFicheiros(const string& fich_old, const string& fich_new);
+	bool FicheiroDuplicados();
+	void PesquisarAllFicheiros(list<string>& lres, const string& file);
+	void PesquisarAllDirectorias(list<string>& lres, const string& dir); 
+	void Tree(const string* fich = nullptr);
 private:
 
 };

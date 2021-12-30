@@ -1,0 +1,22 @@
+POOPROJ --- ---POOPROJ
+	folder 1 --- 27/12/2021 (15:24)---POOPROJ\folder 1
+		folder1_1.txt---(0)06/12/2021 (20:36)
+		folder1_2.txt---(0)06/12/2021 (20:36)
+		hehexd.txt---(0)06/12/2021 (20:36)
+		subfolder --- 27/12/2021 (15:26)---POOPROJ\folder 1\subfolder
+			hehexd.txt---(0)06/12/2021 (20:36)
+			subfolder_1.txt---(0)06/12/2021 (20:36)
+			subfolder_2.txt---(0)06/12/2021 (20:36)
+			subfolder_3.txt---(0)06/12/2021 (20:36)
+			subfolder_4.txt---(0)06/12/2021 (20:36)
+			subfolder_5.txt---(0)22/12/2021 (18:26)
+			subsubfolder1 --- 27/12/2021 (15:24)---POOPROJ\folder 1\subfolder\subsubfolder1
+				subsubfolder1_1.txt---(0)22/12/2021 (18:26)
+	folder 2 --- 27/12/2021 (15:25)---POOPROJ\folder 2
+		folder2_1.txt---(444)22/12/2021 (18:26)
+		folder2_2.txt---(12)22/12/2021 (18:26)
+		folder2_3.txt---(144)22/12/2021 (18:26)
+	folder 3 --- 27/12/2021 (15:45)---POOPROJ\folder 3
+		subfolder --- 27/12/2021 (15:44)---POOPROJ\folder 3\subfolder
+	hehexd.txt---(0)06/12/2021 (20:36)
+	POOPROJ.txt---(0)06/12/2021 (20:36)

@@ -28,28 +28,13 @@ string ObjetoGeral::getNome()
 	return nome;
 }
 
-void ObjetoGeral::Tree(int nivel)
+string ObjetoGeral::getPath()
 {
-}
-
-int ObjetoGeral::countFiles()
-{
-	return 0;
-}
-
-int ObjetoGeral::countDirs()
-{
-	return 0;
-}
-
-void ObjetoGeral::getPath(string* fullpath)
-{
-	fullpath->insert(0, "\\");
-	fullpath->insert(0, getNome());
 	Directoria* parent = getParent();
 	if (parent != NULL) {
-		parent->getPath(fullpath);
+		return parent->getPath() + "\\" + getNome();
 	}
+	return getNome();
 }
 
 void ObjetoGeral::setData(string _data)

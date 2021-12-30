@@ -1,4 +1,6 @@
 #include "SistemaFicheiros.h"
+#include <iostream>
+#include <fstream>
 
 
 bool SistemaFicheiros::Load(const string& path) {
@@ -7,7 +9,6 @@ bool SistemaFicheiros::Load(const string& path) {
 	if (pos != string::npos) {
 		root = new Directoria(path.substr(pos + 1), "");
 	}
-
 	return root->processItems(path);
 }
 
@@ -103,4 +104,31 @@ void SistemaFicheiros::RenomearFicheiros(const string& fich_old, const string& f
 {
 	root->RenomearFicheiros(fich_old, fich_new);
 }
+bool SistemaFicheiros::FicheiroDuplicados() {
+	list<string> l;
+	bool found = false;
+	root->FicheiroDuplicados(l, found);
+	return found;
+}
 
+void SistemaFicheiros::PesquisarAllFicheiros(list<string>& lres, const string& file)
+{
+	root->PesquisarAllFicheiros(lres, file);
+}
+
+void SistemaFicheiros::PesquisarAllDirectorias(list<string>& lres, const string& dir)
+{
+	root->PesquisarAllDirectorias(lres, dir);
+}
+
+void SistemaFicheiros::Tree(const string* fich) {
+	if (fich == nullptr)
+		root->Tree();
+	else
+	{
+		ofstream stream;
+		stream.open(*fich);
+		root->TreeToFile(fich,stream);
+		stream.close();
+	}
+}
