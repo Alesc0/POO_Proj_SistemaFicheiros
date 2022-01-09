@@ -36,9 +36,10 @@ public:
 	virtual int fichMaior(string& fich, int c = 0) = 0;
 	virtual int DirectoriaMaisEspaco(string& dir, int c = 0) = 0;
 	virtual bool RemoverAll(const string& s, const string& tipo, int del = 0) = 0;
+	virtual void removerRecursive(string tipo) = 0;
 	virtual bool MoveFicheiro(const string& Fich, const string& DirNova) = 0;
 	virtual void findFile(string fich, Ficheiro*& fileptr) = 0;
-	virtual void findAllFiles(string str,list<Ficheiro*> &lst) = 0;
+	virtual void findAllFiles(string str, list<Ficheiro*>& lst) = 0;
 	virtual void findDir(string dir, Directoria*& dirptr) = 0;
 	virtual bool MoverDirectoria(const string& DirOld, const string& DirNew) = 0;
 	virtual bool dirInsideDir(Directoria* dirB) = 0;

@@ -139,49 +139,45 @@ string Directoria::Search(const string& s, int Tipo)
 
 bool Directoria::RemoverAll(const string& s, const string& tipo, int del)
 {
-	string name = getNome();
-	string type = "";
+	Directoria* dir = nullptr;
+	findDir(s, dir);
+	if (!dir) return false;
 
-	if (name == s)
-	{
-		del = 1;
-	}
-
-	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it)
-	{
-		type = (*it)->getTipo();
-		name = (*it)->getNome();
-		(*it)->RemoverAll(s, tipo, del);
-
-		if (name == s)
-		{
-			del = 2;
-		}
-
-		if (del > 0) {
-			if (tipo == "DIR") {
-				if (type == typeid(Directoria*).name()) {
-					delete* it;
-					it = Items.erase(it);
-					if (del > 1) {
-						del = 0;
-					}
-					continue;
-				}
-			}
-			else
-			{
-				if (type == typeid(Ficheiro*).name()) {
-					it = Items.erase(it);
-					continue;
-				}
-			}
-		}
-		it++;
-
-	}
+	dir->removerRecursive(tipo);
 
 	return true;
+}
+
+void Directoria::removerRecursive(string tipo)
+{
+	if (tipo == "DIR")
+	{
+		for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it)
+		{
+			if ((*it)->getTipo() == typeid(Directoria*).name())
+			{
+				delete* it;
+				it = Items.erase(it);
+				continue;
+			}
+			it++;
+		}
+	}
+	else
+	{
+		string tipo;
+		for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it)
+		{
+			tipo = (*it)->getTipo();
+			(*it)->removerRecursive(tipo);
+			if (tipo == typeid(Ficheiro*).name())
+			{
+				it = Items.erase(it);
+				continue;
+			}
+			it++;
+		}
+	}
 }
 
 bool Directoria::MoveFicheiro(const string& Fich, const string& DirNova)
@@ -224,7 +220,6 @@ void Directoria::findDir(string dir, Directoria*& dirptr)
 	{
 		if (dirptr == nullptr)
 			(*it)->findDir(dir, dirptr);
-
 	}
 }
 

@@ -14,7 +14,7 @@ int main()
 	bool loadCheck = SF.Load("C:\\Users\\Pedro\\Desktop\\POO_Proj_SistemaFicheiros\\POOPROJ");
 
 	//SF.Tree();
-	SF.CopyBatch("folder","folder 1","folder 2");
+	SF.RemoverAll("POOPROJ","asd");
 	SF.Tree();
 
 	return 0;

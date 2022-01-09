@@ -7,7 +7,6 @@ ObjetoGeral::ObjetoGeral()
 
 ObjetoGeral::~ObjetoGeral()
 {
-	delete parent;
 }
 void ObjetoGeral::setNome(string _nome)
 {

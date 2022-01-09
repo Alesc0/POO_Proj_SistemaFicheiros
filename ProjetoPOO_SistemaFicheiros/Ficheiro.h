@@ -30,6 +30,7 @@ public:
 	int getSize();
 	int DirectoriaMaisEspaco(string& dir, int c);
 	bool RemoverAll(const string& s, const string& tipo, int del = 0);
+	void removerRecursive(string tipo);
 	bool MoveFicheiro(const string& Fich, const string& DirNova);
 	void findFile(string fich, Ficheiro*& fileptr);
 	void findAllFiles(string str, list<Ficheiro*> &lst);

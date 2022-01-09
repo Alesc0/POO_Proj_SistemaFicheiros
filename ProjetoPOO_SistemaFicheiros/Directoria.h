@@ -30,9 +30,10 @@ public:
 	int DirectoriaMaisEspaco(string& dir, int c = 0);
 	string Search(const string& s, int Tipo);
 	bool RemoverAll(const string& s, const string& tipo, int del = 0);
+	void removerRecursive(string tipo);
 	bool MoveFicheiro(const string& Fich, const string& DirNova);
 	void findFile(string fich, Ficheiro*& fileptr);
-	void findAllFiles(string str, list<Ficheiro*> &lst);
+	void findAllFiles(string str, list<Ficheiro*>& lst);
 	void findDir(string dir, Directoria*& dirptr);
 	bool MoverDirectoria(const string& DirOld, const string& DirNew);
 	bool dirInsideDir(Directoria* dirB);

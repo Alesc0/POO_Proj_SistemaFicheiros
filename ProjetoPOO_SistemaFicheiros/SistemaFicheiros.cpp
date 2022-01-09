@@ -126,5 +126,5 @@ void SistemaFicheiros::Tree(const string* fich) {
 
 bool SistemaFicheiros::CopyBatch(const string& padrao, const string& DirOrigem, const string& DirDestino)
 {
-	return root->CopyBatch(padrao,DirOrigem,DirDestino);
+	return root->CopyBatch(padrao, DirOrigem, DirDestino);
 }

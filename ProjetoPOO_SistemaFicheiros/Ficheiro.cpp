@@ -93,6 +93,11 @@ bool Ficheiro::RemoverAll(const string& s, const string& tipo, int del)
 	return true;
 }
 
+void Ficheiro::removerRecursive(string tipo)
+{
+	delete this;
+}
+
 bool Ficheiro::MoveFicheiro(const string& Fich, const string& DirNova)
 {
 	return false;
