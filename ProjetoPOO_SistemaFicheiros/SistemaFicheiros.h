@@ -33,6 +33,7 @@ public:
 	void PesquisarAllFicheiros(list<string>& lres, const string& file);
 	void PesquisarAllDirectorias(list<string>& lres, const string& dir); 
 	void Tree(const string* fich = nullptr);
+	bool CopyBatch(const string& padrao,const string& DirOrigem, const string& DirDestino);
 private:
 
 };

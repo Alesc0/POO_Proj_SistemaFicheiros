@@ -29,7 +29,6 @@ public:
 	void setTamanho(int _tamanho);
 	int getSize();
 	int DirectoriaMaisEspaco(string& dir, int c);
-	void Search(const string& s, int Tipo, string& path);
 	bool RemoverAll(const string& s, const string& tipo, int del = 0);
 	bool MoveFicheiro(const string& Fich, const string& DirNova);
 	void findFile(string fich, Ficheiro*& fileptr);

@@ -86,14 +86,6 @@ int Ficheiro::DirectoriaMaisEspaco(string& dir, int c)
 	return getSize();
 }
 
-void Ficheiro::Search(const string& s, int Tipo, string& _path)
-{
-	if ((Tipo == 0) && (getTipo() == typeid(Ficheiro*).name())) {
-
-		_path = getPath();
-	}
-}
-
 bool Ficheiro::RemoverAll(const string& s, const string& tipo, int del)
 {
 	if (del)

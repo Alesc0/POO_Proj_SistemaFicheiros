@@ -28,7 +28,7 @@ public:
 	int fichMaior(string& fich, int c = 0);
 	int getSize();
 	int DirectoriaMaisEspaco(string& dir, int c = 0);
-	void Search(const string& s, int Tipo, string& path);
+	string Search(const string& s, int Tipo);
 	bool RemoverAll(const string& s, const string& tipo, int del = 0);
 	bool MoveFicheiro(const string& Fich, const string& DirNova);
 	void findFile(string fich, Ficheiro*& fileptr);

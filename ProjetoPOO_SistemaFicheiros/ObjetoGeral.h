@@ -35,7 +35,6 @@ public:
 	virtual int dirMenosElementos(string& dir, int c = 0) = 0;
 	virtual int fichMaior(string& fich, int c = 0) = 0;
 	virtual int DirectoriaMaisEspaco(string& dir, int c = 0) = 0;
-	virtual void Search(const string& s, int Tipo, string& path) = 0;
 	virtual bool RemoverAll(const string& s, const string& tipo, int del = 0) = 0;
 	virtual bool MoveFicheiro(const string& Fich, const string& DirNova) = 0;
 	virtual void findFile(string fich, Ficheiro*& fileptr) = 0;

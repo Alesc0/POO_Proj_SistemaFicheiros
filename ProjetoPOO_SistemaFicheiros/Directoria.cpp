@@ -30,7 +30,6 @@ int Directoria::countFiles()
 	return c;
 }
 
-
 int Directoria::countDirs()
 {
 	int c = 1;
@@ -114,24 +113,26 @@ int Directoria::DirectoriaMaisEspaco(string& dir, int c) {
 	return c;
 }
 
-void Directoria::Search(const string& s, int Tipo, string& _path)
+string Directoria::Search(const string& s, int Tipo)
 {
 	//tipo 0 -> ficheiro
 	//tipo 1 -> directoria
 
-	if (getNome() == s)
+	if (Tipo == 0)
 	{
-		if ((Tipo == 1) && (getTipo() == typeid(Directoria*).name()))
-		{
-			_path = getPath();
-		}
+		Ficheiro* fich = nullptr;
+		findFile(s, fich);
+		if (!fich) return "";
+		return fich->getPath();
 	}
-
-	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
+	else if (Tipo == 1)
 	{
-		if (_path != "") return;
-		(*it)->Search(s, Tipo, _path);
+		Directoria* dir = nullptr;
+		findDir(s, dir);
+		if (!dir) return "";
+		return dir->getPath();
 	}
+	return "";
 }
 
 bool Directoria::RemoverAll(const string& s, const string& tipo, int del)

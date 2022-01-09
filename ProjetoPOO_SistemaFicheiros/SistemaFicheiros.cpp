@@ -42,7 +42,7 @@ string* SistemaFicheiros::DirectoriaMaisElementos()
 }
 string* SistemaFicheiros::DirectoriaMenosElementos()
 {
-	string dir = NULL;
+	string dir;
 	root->dirMenosElementos(dir);
 	return new string(dir);
 }
@@ -66,15 +66,9 @@ string* SistemaFicheiros::Search(const string& s, int Tipo) {
 	//tipo 0 -> ficheiro
 	//tipo 1 -> directoria
 
-	string path = "";
-	root->Search(s, Tipo, path);
+	string path = root->Search(s, Tipo);
 	if (path == "") {
-		path = "Caminho não encontrado";
-	}
-	else
-	{
-		path.insert(0, "\\");
-		path.insert(0, pathToRoot);
+		path = "Caminho nao encontrado ou tipo invalido";
 	}
 	return new string(path);
 
@@ -128,4 +122,9 @@ void SistemaFicheiros::Tree(const string* fich) {
 		root->TreeToFile(fich, stream);
 		stream.close();
 	}
+}
+
+bool SistemaFicheiros::CopyBatch(const string& padrao, const string& DirOrigem, const string& DirDestino)
+{
+	return false;
 }

@@ -11,10 +11,9 @@ using namespace std;
 int main()
 {
 	SistemaFicheiros SF;
-	int i = 0, r = 0;
 	bool loadCheck = SF.Load("C:\\Users\\Pedro\\Desktop\\POO_Proj_SistemaFicheiros\\POOPROJ");
 
-	cout << *SF.DirectoriaMaisElementos();
+	cout << *SF.Search("subsubfolder1",1);
 
 	return 0;
 }
