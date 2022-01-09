@@ -3,6 +3,8 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <sstream>
+#include <iomanip>
 
 Directoria::Directoria(string _nome, string _data, Directoria* _parent)
 {
@@ -303,6 +305,64 @@ void Directoria::PesquisarAllDirectorias(list<string>& lres, const string& dir)
 	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
 	{
 		(*it)->PesquisarAllDirectorias(lres, dir);
+	}
+}
+
+bool Directoria::CopyBatch(const string& padrao, const string& DirOrigem, const string& DirDestino)
+{
+	list<Ficheiro*> files;
+	Directoria* dirO = nullptr;
+	Directoria* dirN = nullptr;
+
+	findDir(DirOrigem, dirO);
+	findDir(DirDestino, dirN);
+
+	dirO->findAllFiles(padrao, files);
+
+	for (list<Ficheiro*>::iterator i = files.begin(); i != files.end(); i++)
+	{
+		dirN->Items.push_back(*i);
+	}
+
+	dirN->FixNames();
+
+	return false;
+}
+
+void Directoria::FixNames() {
+
+	int occ = 0;
+	string nome;
+	ostringstream st;
+	list<ObjetoGeral*>::iterator it1;
+	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
+	{
+		occ = 0;
+		nome = (*it)->getNome();
+		it1 = it;
+		it1++;
+
+		for (; it1 != Items.end(); it1++)
+		{
+			if ((*it1)->getNome() == nome)
+			{
+				occ++;
+				st << setfill('0') << setw(3) << occ;
+				string n = nome;
+				n.insert(n.find_last_of("."), "(" + st.str() + ")");
+				(*it)->setNome(n);
+				st.str("");
+				st.clear();
+			}
+		}
+	}
+}
+
+void Directoria::findAllFiles(string str, list<Ficheiro*>& lst) {
+
+	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
+	{
+		(*it)->findAllFiles(str, lst);
 	}
 }
 

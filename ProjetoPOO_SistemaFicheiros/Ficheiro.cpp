@@ -105,6 +105,13 @@ void Ficheiro::findFile(string fich, Ficheiro*& fileptr)
 	}
 }
 
+void Ficheiro::findAllFiles(string str, list<Ficheiro*> &lst)
+{
+	if (strstr(getNome().c_str(), str.c_str())) {
+		lst.push_back(this);
+	}
+}
+
 void Ficheiro::findDir(string fich, Directoria*& dirptr)
 {
 	return;

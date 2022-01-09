@@ -28,7 +28,7 @@ public:
 	string getData();
 	virtual int getSize() = 0;
 	virtual void Tree(int nivel = 0) = 0;
-	virtual void TreeToFile(const string* file, ofstream &stream, int nivel = 0) = 0;
+	virtual void TreeToFile(const string* file, ofstream& stream, int nivel = 0) = 0;
 	virtual int countFiles() = 0;
 	virtual int countDirs() = 0;
 	virtual int dirMaisElementos(string& dir, int c) = 0;
@@ -38,6 +38,7 @@ public:
 	virtual bool RemoverAll(const string& s, const string& tipo, int del = 0) = 0;
 	virtual bool MoveFicheiro(const string& Fich, const string& DirNova) = 0;
 	virtual void findFile(string fich, Ficheiro*& fileptr) = 0;
+	virtual void findAllFiles(string str,list<Ficheiro*> &lst) = 0;
 	virtual void findDir(string dir, Directoria*& dirptr) = 0;
 	virtual bool MoverDirectoria(const string& DirOld, const string& DirNew) = 0;
 	virtual bool dirInsideDir(Directoria* dirB) = 0;

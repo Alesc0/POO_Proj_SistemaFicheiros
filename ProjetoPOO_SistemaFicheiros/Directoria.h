@@ -32,6 +32,7 @@ public:
 	bool RemoverAll(const string& s, const string& tipo, int del = 0);
 	bool MoveFicheiro(const string& Fich, const string& DirNova);
 	void findFile(string fich, Ficheiro*& fileptr);
+	void findAllFiles(string str, list<Ficheiro*> &lst);
 	void findDir(string dir, Directoria*& dirptr);
 	bool MoverDirectoria(const string& DirOld, const string& DirNew);
 	bool dirInsideDir(Directoria* dirB);
@@ -40,7 +41,8 @@ public:
 	void FicheiroDuplicados(list<string>& l, bool& _found);
 	void PesquisarAllFicheiros(list<string>& lres, const string& file);
 	void PesquisarAllDirectorias(list<string>& lres, const string& dir);
-
+	bool CopyBatch(const string& padrao, const string& DirOrigem, const string& DirDestino);
+	void FixNames();
 private:
 
 };

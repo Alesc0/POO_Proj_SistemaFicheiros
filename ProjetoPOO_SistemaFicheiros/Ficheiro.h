@@ -32,6 +32,7 @@ public:
 	bool RemoverAll(const string& s, const string& tipo, int del = 0);
 	bool MoveFicheiro(const string& Fich, const string& DirNova);
 	void findFile(string fich, Ficheiro*& fileptr);
+	void findAllFiles(string str, list<Ficheiro*> &lst);
 	void findDir(string dir, Directoria*& dirptr);
 	bool MoverDirectoria(const string& DirOld, const string& DirNew);
 	bool dirInsideDir(Directoria* dirB);
