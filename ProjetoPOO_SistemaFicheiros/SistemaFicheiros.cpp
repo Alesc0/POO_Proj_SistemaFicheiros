@@ -38,23 +38,20 @@ string* SistemaFicheiros::DirectoriaMaisElementos()
 {
 	string dir = "";
 	root->dirMaisElementos(dir);
-	string* ptr = new string(dir);
-	return ptr;
+	return new string(dir);
 }
 string* SistemaFicheiros::DirectoriaMenosElementos()
 {
 	string dir = NULL;
 	root->dirMenosElementos(dir);
-	string* ptr = new string(dir);
-	return ptr;
+	return new string(dir);
 }
 
 
 string* SistemaFicheiros::DirectoriaMaisEspaco() {
 	string dir;
 	root->DirectoriaMaisEspaco(dir);
-	string* ptr = new string(dir);
-	return ptr;
+	return new string(dir);
 }
 
 int SistemaFicheiros::ContarFicheiros() {
@@ -70,7 +67,6 @@ string* SistemaFicheiros::Search(const string& s, int Tipo) {
 	//tipo 1 -> directoria
 
 	string path = "";
-	string* ptr = NULL;
 	root->Search(s, Tipo, path);
 	if (path == "") {
 		path = "Caminho não encontrado";
@@ -80,8 +76,7 @@ string* SistemaFicheiros::Search(const string& s, int Tipo) {
 		path.insert(0, "\\");
 		path.insert(0, pathToRoot);
 	}
-	ptr = new string(path);
-	return ptr;
+	return new string(path);
 
 }
 bool SistemaFicheiros::RemoverAll(const string& s, const string& tipo) {

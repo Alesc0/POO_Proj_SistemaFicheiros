@@ -13,7 +13,6 @@ Ficheiro::Ficheiro(string _nome, Directoria* _parent, int _tamanho, string _data
 
 Ficheiro::~Ficheiro()
 {
-
 }
 
 string FileSpaces(int n) {
@@ -89,7 +88,6 @@ int Ficheiro::DirectoriaMaisEspaco(string& dir, int c)
 
 void Ficheiro::Search(const string& s, int Tipo, string& _path)
 {
-	string* path = new string();
 	if ((Tipo == 0) && (getTipo() == typeid(Ficheiro*).name())) {
 
 		_path = getPath();

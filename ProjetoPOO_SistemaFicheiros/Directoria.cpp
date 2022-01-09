@@ -121,8 +121,6 @@ void Directoria::Search(const string& s, int Tipo, string& _path)
 
 	if (getNome() == s)
 	{
-		string* path = new string();
-
 		if ((Tipo == 1) && (getTipo() == typeid(Directoria*).name()))
 		{
 			_path = getPath();

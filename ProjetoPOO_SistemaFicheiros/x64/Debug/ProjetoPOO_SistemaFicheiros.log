@@ -1,4 +1,8 @@
+<<<<<<< HEAD
+﻿  SistemaFicheiros.cpp
+=======
 ﻿  Directoria.cpp
 C:\Users\Pedro\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\Directoria.cpp(86,26): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
 C:\Users\Pedro\Desktop\POO_Proj_SistemaFicheiros\ProjetoPOO_SistemaFicheiros\Directoria.cpp(88,25): warning C4267: '+=': conversion from 'size_t' to 'int', possible loss of data
+>>>>>>> parent of 7ca2b7f (21)
   ProjetoPOO_SistemaFicheiros.vcxproj -> C:\Users\Pedro\Desktop\POO_Proj_SistemaFicheiros\x64\Debug\ProjetoPOO_SistemaFicheiros.exe
