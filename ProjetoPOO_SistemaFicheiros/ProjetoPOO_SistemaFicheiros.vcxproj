@@ -148,14 +148,12 @@
     <ClCompile Include="ObjetoGeral.cpp" />
     <ClCompile Include="ProjetoPOO_SistemaFicheiros.cpp" />
     <ClCompile Include="SistemaFicheiros.cpp" />
-    <ClCompile Include="XMLHandler.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Directoria.h" />
     <ClInclude Include="Ficheiro.h" />
     <ClInclude Include="ObjetoGeral.h" />
     <ClInclude Include="SistemaFicheiros.h" />
-    <ClInclude Include="XMLHandler.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

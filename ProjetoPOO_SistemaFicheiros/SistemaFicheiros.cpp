@@ -13,11 +13,17 @@ bool SistemaFicheiros::Load(const string& path) {
 	return root->processItems(path);
 }
 
-bool SistemaFicheiros::ReadXml(const string& path) {
+void SistemaFicheiros::Escrever_XML(const string& s) {
+	ofstream f;
+	f.open(s + ".xml");
+	root->Writing(root, f);
+	f.close();
+}
+
+bool SistemaFicheiros::Ler_XML(const string& path) {
 	ifstream file;
 	string txt;
 	file.open(path);
-	//string idk = "C:\\Users\\Sheep\\Desktop\\Repositories\\POO_Proj_SistemaFicheiros\\POOPROJ";
 	pathToRoot = "";
 
 	getline(file, txt);
@@ -41,15 +47,10 @@ bool SistemaFicheiros::ReadXml(const string& path) {
 			if (txt.find("<Items>") != string::npos) {
 				root->processXML(file);
 			}
-
-			
-
-
 		}
 	}
-
-
-
+	if (!root)
+		return false;
 	return true;
 }
 
@@ -59,6 +60,7 @@ SistemaFicheiros::SistemaFicheiros()
 
 SistemaFicheiros::~SistemaFicheiros()
 {
+	delete root;
 }
 
 Directoria* SistemaFicheiros::getRoot()

@@ -367,6 +367,8 @@ void Directoria::findAllFiles(string str, list<Ficheiro*>& lst) {
 	{
 		(*it)->findAllFiles(str, lst);
 	}
+}
+
 Directoria* Directoria::processXML(ifstream& file) {
 	string txt;
 

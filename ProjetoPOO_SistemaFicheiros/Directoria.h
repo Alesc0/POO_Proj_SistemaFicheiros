@@ -17,6 +17,7 @@ class Directoria : public ObjetoGeral
 	list<ObjetoGeral*> Items;
 public:
 	Directoria(string _nome, string data, Directoria* _parent = nullptr);
+	Directoria();
 	~Directoria();
 	void setItems(list<ObjetoGeral*> Items);
 	list<ObjetoGeral*> getItems();
