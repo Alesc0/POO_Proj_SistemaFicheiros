@@ -15,24 +15,15 @@ Ficheiro::~Ficheiro()
 {
 }
 
-string FileSpaces(int n) {
-	string spaces = "";
-	for (int i = 0; i < n; i++)
-	{
-		spaces.append("\t");
-	}
-	return spaces;
-}
 
 void Ficheiro::Tree(int nivel)
 {
-	string h = getData();
-	cout << FileSpaces(nivel) << getNome() << "---(" << tamanho << ")" << h << endl;
+	cout << Spaces(nivel) << getNome() << endl;
 }
 
 void Ficheiro::TreeToFile(const string* file, ofstream& stream, int nivel)
 {
-	string h = FileSpaces(nivel) + getNome() + "---(" + to_string(tamanho) + ")" + getData() + "\n";
+	string h = Spaces(nivel) + getNome() + "---(" + to_string(tamanho) + ")" + getData() + "\n";
 	stream << h;
 }
 
@@ -54,15 +45,11 @@ void Ficheiro::dirMenosElementos(Directoria*& dir)
 {
 }
 
-int Ficheiro::fichMaior(string& fich, int c)
+void Ficheiro::fichMaior(Ficheiro*& fich)
 {
-	int atualc = tamanho;
-
-	if (atualc > c) {
-		c = atualc;
-		fich = this->getNome();
+	if (!fich || tamanho > fich->tamanho) {
+		fich = this;
 	}
-	return c;
 }
 
 void Ficheiro::setTamanho(int _tamanho)

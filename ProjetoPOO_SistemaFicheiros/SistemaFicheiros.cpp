@@ -72,6 +72,12 @@ string* SistemaFicheiros::Search(const string& s, int Tipo) {
 	return new string(path);
 
 }
+string* SistemaFicheiros::FicheiroMaior()
+{
+	Ficheiro* fich = nullptr;
+	root->fichMaior(fich);
+	return new string(fich->getPath());
+}
 bool SistemaFicheiros::RemoverAll(const string& s, const string& tipo) {
 	return root->RemoverAll(s, tipo);
 }

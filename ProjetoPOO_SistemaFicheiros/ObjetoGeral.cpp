@@ -47,3 +47,29 @@ string ObjetoGeral::getData()
 	return data;
 }
 
+string ObjetoGeral::Spaces(int n)
+{
+	{
+		string spaces = "";
+		if (n == 1)
+		{
+			spaces.append("|_____");
+		}
+		else
+		{
+			for (int i = 1; i <= n; i++)
+			{
+				if (i != n)
+				{
+					spaces.append("|     ");
+				}
+				else
+				{
+					spaces.append("|_____");
+				}
+			}
+		}
+		return spaces;
+	}
+}
+

@@ -25,7 +25,7 @@ public:
 	int countDirs();
 	void dirMaisElementos(Directoria* &dir);
 	void dirMenosElementos(Directoria*& dir);
-	int fichMaior(string& fich, int c = 0);
+	void fichMaior(Ficheiro* &fich);;
 	void setTamanho(int _tamanho);
 	int getSize();
 	int DirectoriaMaisEspaco(string& dir, int c);

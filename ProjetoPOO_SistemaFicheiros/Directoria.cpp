@@ -68,13 +68,12 @@ void Directoria::dirMenosElementos(Directoria*& dir) {
 	}
 }
 
-int Directoria::fichMaior(string& fich, int c)
+void Directoria::fichMaior(Ficheiro*& fich)
 {
 	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
 	{
-		c = (*it)->fichMaior(fich, c);
+		(*it)->fichMaior(fich);
 	}
-	return c;
 }
 
 int Directoria::getSize()
@@ -401,19 +400,11 @@ bool Directoria::processItems(const string& path)
 	return true;
 }
 
-string DirSpaces(int n) {
-	string spaces = "";
-	for (int i = 0; i < n; i++)
-	{
-		spaces.append("\t");
-	}
-	return spaces;
-}
+
 
 void Directoria::Tree(int nivel)
 {
-	string h = getData();
-	cout << DirSpaces(nivel) << getNome() << " --- " << h << endl;
+	cout << Spaces(nivel) << getNome() << endl;
 	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
 	{
 		(*it)->Tree(nivel + 1);
@@ -422,7 +413,7 @@ void Directoria::Tree(int nivel)
 
 void Directoria::TreeToFile(const string* file, ofstream& stream, int nivel)
 {
-	string h = DirSpaces(nivel) + getNome() + " --- " + getData() + "---" + getPath() + "\n";
+	string h = Spaces(nivel) + getNome() + "\n";
 	stream << h;
 	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
 	{

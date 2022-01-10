@@ -26,6 +26,7 @@ public:
 	string getPath();
 	void setData(string _data);
 	string getData();
+	string Spaces(int n);
 	virtual int getSize() = 0;
 	virtual void Tree(int nivel = 0) = 0;
 	virtual void TreeToFile(const string* file, ofstream& stream, int nivel = 0) = 0;
@@ -33,7 +34,7 @@ public:
 	virtual int countDirs() = 0;
 	virtual void dirMaisElementos(Directoria*& dir) = 0;
 	virtual void dirMenosElementos(Directoria*& dir) = 0;
-	virtual int fichMaior(string& fich, int c = 0) = 0;
+	virtual void fichMaior(Ficheiro* &fich) = 0;
 	virtual int DirectoriaMaisEspaco(string& dir, int c = 0) = 0;
 	virtual bool RemoverAll(const string& s, const string& tipo, int del = 0) = 0;
 	virtual void removerRecursive(string tipo) = 0;

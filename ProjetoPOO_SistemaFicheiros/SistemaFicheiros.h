@@ -22,6 +22,7 @@ public:
 	int Memoria();
 	string* DirectoriaMaisElementos();
 	string* DirectoriaMenosElementos();
+	string* FicheiroMaior();
 	string* DirectoriaMaisEspaco();
 	string* Search(const string& s, int Tipo);
 	bool RemoverAll(const string& s, const string& tipo);
