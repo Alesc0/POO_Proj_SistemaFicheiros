@@ -72,21 +72,9 @@ int Ficheiro::DirectoriaMaisEspaco(string& dir, int c)
 	return getSize();
 }
 
-bool Ficheiro::RemoverAll(const string& s, const string& tipo, int del)
-{
-	if (del)
-		delete this;
-	return true;
-}
-
 void Ficheiro::removerRecursive(string tipo)
 {
 	delete this;
-}
-
-bool Ficheiro::MoveFicheiro(const string& Fich, const string& DirNova)
-{
-	return false;
 }
 
 void Ficheiro::findFile(string fich, Ficheiro*& fileptr)

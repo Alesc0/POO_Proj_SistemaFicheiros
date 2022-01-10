@@ -79,9 +79,7 @@ void Directoria::fichMaior(Ficheiro*& fich)
 int Directoria::getSize()
 {
 	int _size = 0;
-	_size = getNome().size();
-	_size += sizeof(getParent());
-	_size += getData().size();
+	_size = getNome().size() + sizeof(getParent()) + getData().size();
 	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
 	{
 		_size += (*it)->getSize();
@@ -132,7 +130,7 @@ string Directoria::Search(const string& s, int Tipo)
 	return "";
 }
 
-bool Directoria::RemoverAll(const string& s, const string& tipo, int del)
+bool Directoria::RemoverAll(const string& s, const string& tipo)
 {
 	Directoria* dir = nullptr;
 	findDir(s, dir);

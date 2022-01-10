@@ -49,27 +49,17 @@ string ObjetoGeral::getData()
 
 string ObjetoGeral::Spaces(int n)
 {
+	string spaces = "";
+
+	if (n == 1)	spaces.append("|_____");
+	else
 	{
-		string spaces = "";
-		if (n == 1)
+		for (int i = 1; i <= n; i++)
 		{
-			spaces.append("|_____");
+			if (i != n)	spaces.append("|     ");
+			else spaces.append("|_____");
 		}
-		else
-		{
-			for (int i = 1; i <= n; i++)
-			{
-				if (i != n)
-				{
-					spaces.append("|     ");
-				}
-				else
-				{
-					spaces.append("|_____");
-				}
-			}
-		}
-		return spaces;
 	}
+	return spaces;
 }
 
