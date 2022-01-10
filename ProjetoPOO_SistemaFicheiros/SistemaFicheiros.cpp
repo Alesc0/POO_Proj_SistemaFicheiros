@@ -31,7 +31,7 @@ string SistemaFicheiros::getRootPath()
 }
 
 int SistemaFicheiros::Memoria() {
-	return 0;
+	return root->getSize();
 }
 
 string* SistemaFicheiros::DirectoriaMaisElementos()

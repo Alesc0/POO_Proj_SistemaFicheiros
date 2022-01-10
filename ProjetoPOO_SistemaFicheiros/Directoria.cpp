@@ -15,6 +15,8 @@ Directoria::Directoria(string _nome, string _data, Directoria* _parent)
 
 Directoria::~Directoria()
 {
+	//ao dar delete numa directoria irá chamar o destructor da mesma
+	//apagando assim todas as directorias e ficheiros encadeadas
 	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
 	{
 		delete* it;
