@@ -46,13 +46,12 @@ int Ficheiro::countDirs()
 	return 0;
 }
 
-int Ficheiro::dirMaisElementos(string& dir, int c)
+void Ficheiro::dirMaisElementos(Directoria*& dir)
 {
-	return c;
 }
-int Ficheiro::dirMenosElementos(string& dir, int c)
+
+void Ficheiro::dirMenosElementos(Directoria*& dir)
 {
-	return c;
 }
 
 int Ficheiro::fichMaior(string& fich, int c)
@@ -110,7 +109,7 @@ void Ficheiro::findFile(string fich, Ficheiro*& fileptr)
 	}
 }
 
-void Ficheiro::findAllFiles(string str, list<Ficheiro*> &lst)
+void Ficheiro::findAllFiles(string str, list<Ficheiro*>& lst)
 {
 	if (strstr(getNome().c_str(), str.c_str())) {
 		lst.push_back(this);

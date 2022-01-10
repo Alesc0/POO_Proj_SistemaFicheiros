@@ -45,33 +45,27 @@ int Directoria::countDirs()
 	return c;
 }
 
-int Directoria::dirMaisElementos(string& dir, int c) {
+void Directoria::dirMaisElementos(Directoria*& dir) {
 	int atualc = (int)Items.size();
 
-	if (atualc > c) {
-		c = atualc;
-		dir = this->getNome();
+	if (!dir || atualc > dir->Items.size()) {
+		dir = this;
 	}
 	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
 	{
-		c = (*it)->dirMaisElementos(dir, c);
+		(*it)->dirMaisElementos(dir);
 	}
-	return c;
 }
 
-int Directoria::dirMenosElementos(string& dir, int c) {
-	if (c == -1) c = (int)Items.size();
-	int atualc = (int)Items.size();
+void Directoria::dirMenosElementos(Directoria*& dir) {
 
-	if (atualc < c) {
-		c = atualc;
-		dir = this->getNome();
+	if (!dir || Items.size() < dir->getSize()) {
+		dir = this;
 	}
 	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
 	{
-		c = (*it)->dirMenosElementos(dir, c);
+		(*it)->dirMenosElementos(dir);
 	}
-	return c;
 }
 
 int Directoria::fichMaior(string& fich, int c)

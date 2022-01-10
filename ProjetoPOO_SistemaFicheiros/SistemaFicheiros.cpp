@@ -36,17 +36,16 @@ int SistemaFicheiros::Memoria() {
 
 string* SistemaFicheiros::DirectoriaMaisElementos()
 {
-	string dir = "";
+	Directoria* dir = nullptr;
 	root->dirMaisElementos(dir);
-	return new string(dir);
+	return new string(dir->getNome());
 }
 string* SistemaFicheiros::DirectoriaMenosElementos()
 {
-	string dir;
+	Directoria* dir = nullptr;
 	root->dirMenosElementos(dir);
-	return new string(dir);
+	return new string(dir->getNome());
 }
-
 
 string* SistemaFicheiros::DirectoriaMaisEspaco() {
 	string dir;

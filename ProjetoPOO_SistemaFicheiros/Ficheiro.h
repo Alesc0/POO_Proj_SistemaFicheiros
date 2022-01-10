@@ -23,8 +23,8 @@ public:
 	void TreeToFile(const string* file,ofstream &stream, int nivel = 0);
 	int countFiles();
 	int countDirs();
-	int dirMaisElementos(string& dir, int c = 0);
-	int dirMenosElementos(string& dir, int c = 0);
+	void dirMaisElementos(Directoria* &dir);
+	void dirMenosElementos(Directoria*& dir);
 	int fichMaior(string& fich, int c = 0);
 	void setTamanho(int _tamanho);
 	int getSize();
