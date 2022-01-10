@@ -2,9 +2,12 @@
 #include <string>
 #include <dirent.h>
 
+#include <list>
+#include "ObjetoGeral.h"
 #include "Directoria.h"
 #include "SistemaFicheiros.h"
 #include "Ficheiro.h"
+#include "XMLHandler.h"
 
 using namespace std;
 

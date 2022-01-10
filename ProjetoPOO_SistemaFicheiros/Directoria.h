@@ -7,6 +7,7 @@
 #include <iostream>
 #include <fstream>
 #include "Ficheiro.h"
+#include <iostream>
 #include "ObjetoGeral.h"
 
 using namespace std;
@@ -17,6 +18,8 @@ class Directoria : public ObjetoGeral
 public:
 	Directoria(string _nome, string data, Directoria* _parent = nullptr);
 	~Directoria();
+	void setItems(list<ObjetoGeral*> Items);
+	list<ObjetoGeral*> getItems();
 	string getTipo();
 	int countFiles();
 	int countDirs();
@@ -44,6 +47,8 @@ public:
 	void PesquisarAllDirectorias(list<string>& lres, const string& dir);
 	bool CopyBatch(const string& padrao, const string& DirOrigem, const string& DirDestino);
 	void FixNames();
+	bool Writing(Directoria* dir, ostream& f, int nmrTabs=0);
+	Directoria* processXML(ifstream& file); 
 private:
 
 };

@@ -46,6 +46,7 @@ public:
 	virtual void FicheiroDuplicados(list<string>& l, bool& _found) = 0;
 	virtual void PesquisarAllFicheiros(list<string>& lres, const string& file) = 0;
 	virtual void PesquisarAllDirectorias(list<string>& lres, const string& dir) = 0;
+	virtual bool Writing(Directoria* dir, ostream& f,int nmrTabs=0) = 0;
 private:
 
 };

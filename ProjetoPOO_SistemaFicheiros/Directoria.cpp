@@ -13,6 +13,11 @@ Directoria::Directoria(string _nome, string _data, Directoria* _parent)
 	setData(_data);
 }
 
+Directoria::Directoria()
+{
+
+}
+
 Directoria::~Directoria()
 {
 	//ao dar delete numa directoria irá chamar o destructor da mesma
@@ -32,6 +37,16 @@ int Directoria::countFiles()
 		c += (*it)->countFiles();
 	}
 	return c;
+}
+
+void Directoria::setItems(list<ObjetoGeral*> _Items) {
+	Items.assign(_Items.begin(), _Items.end());
+	//std::copy(_Items.begin(), _Items.end(), Items);
+}
+
+list<ObjetoGeral*> Directoria::getItems()
+{
+	return Items;
 }
 
 int Directoria::countDirs()
@@ -352,6 +367,58 @@ void Directoria::findAllFiles(string str, list<Ficheiro*>& lst) {
 	{
 		(*it)->findAllFiles(str, lst);
 	}
+Directoria* Directoria::processXML(ifstream& file) {
+	string txt;
+
+
+	do {
+		getline(file, txt);
+		txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
+
+
+		if ((txt.find("<directoria>") != string::npos)) {
+			cout << "dir";
+			getline(file, txt);
+			txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
+			if ((txt.find("<nome>") != string::npos)) {
+				string nome = txt.substr(6, txt.length() - 13);
+				getline(file, txt);
+				txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
+
+				if (txt.find("<data>") != string::npos) {
+					string data = txt.substr(6, txt.length() - 13);
+					Directoria* atualDir = new Directoria(nome, data, this);
+					Items.push_back(atualDir);
+					getline(file, txt);
+					txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
+					cout << txt << endl;
+					if (txt.find("<Items>") != string::npos) {
+						atualDir->processXML(file);
+					}
+				}
+			}
+		}
+		else if ((txt.find("<ficheiro>") != string::npos)) {
+			cout << "fic" << endl;
+			getline(file, txt);
+			txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
+			string nome = txt.substr(6, txt.length() - 13);
+			getline(file, txt);
+			txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
+			string data = txt.substr(6, txt.length() - 13);
+			getline(file, txt);
+			txt.erase(remove(txt.begin(), txt.end(), '\t'), txt.end());
+			int tamanho = stoi(txt.substr(9, txt.length() - 19));
+			Ficheiro* f = new Ficheiro(nome, this, 10, data);
+			Items.push_back(f);
+		}
+
+
+
+	} while (!(txt.find("</Items>") != string::npos));
+
+
+	return this;
 }
 
 bool Directoria::processItems(const string& path)
@@ -424,3 +491,26 @@ string Directoria::getTipo()
 	return typeid(this).name();
 }
 
+bool Directoria::Writing(Directoria* dir, ostream& f, int nmrTabs) {
+	string x = "";
+	for (int i = 0; i < nmrTabs; i++)
+	{
+		x += "\t";
+	}
+	string y = "";
+	for (int i = 0; i < nmrTabs; i++)
+	{
+		y += "\t";
+	}
+	f << x << "<directoria>" << endl;
+	f << y << "<nome>" << this->getNome() << "</nome>" << endl;
+	f << y << "<data>" << this->getData() << "</data>" << endl;
+	f << y << "<Items>" << endl;
+	for (list<ObjetoGeral*>::iterator it = Items.begin(); it != Items.end(); it++)
+	{
+		(*it)->Writing(this, f, nmrTabs + 2);
+	}
+	f << y << "</Items>" << endl;
+	f << x << "</directoria>" << endl;
+	return true;
+}
